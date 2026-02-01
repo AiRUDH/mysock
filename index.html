@@ -1,594 +1,378 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { 
-  Cpu, 
-  Globe, 
-  ShieldCheck, 
-  Zap, 
-  BarChart3, 
-  MessageSquare, 
-  Server, 
-  Layers, 
-  Code2, 
-  ArrowRight, 
-  CheckCircle2, 
-  Menu, 
-  X, 
-  ChevronRight,
-  Terminal,
-  ShoppingBag,
-  Target,
-  Box,
-  Monitor,
-  Phone,
-  Mail,
-  MapPin,
-  Activity,
-  Lock,
-  Workflow,
-  Users,
-  Briefcase,
-  GraduationCap,
-  Trophy,
-  Plus,
-  ChevronDown,
-  Sparkles,
-  Search,
-  ShoppingCart,
-  User,
-  Headphones,
-  Download,
-  ExternalLink
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySock | Elite Engineering & Autonomous AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .nav-dropdown { display: none; }
+        .nav-dropdown.active { display: block; }
+        .institutional-shadow { shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .active-orange { background-color: #c2410c !important; color: white !important; }
+        .transition-all { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    </style>
+</head>
+<body class="bg-white text-slate-900 overflow-x-hidden">
 
-/**
- * MYSOCK ENTERPRISE PLATFORM V4.2
- * Architecture: Deep-Work Optimized SPA
- * Status: Production Ready (Coduction Stable)
- * Team: 10+ Elite Engineers
- */
-
-const App = () => {
-  const [activeSection, setActiveSection] = useState('home');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
-
-  // Deep Research: Handle scroll for elite navbar transitions
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 40) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Global click listener to close institutional dropdowns safely
-  useEffect(() => {
-    const handleClickOutside = () => setActiveDropdown(null);
-    window.addEventListener('click', handleClickOutside);
-    return () => window.removeEventListener('click', handleClickOutside);
-  }, []);
-
-  // Professional Navigation Handler
-  const navigateTo = useCallback((section) => {
-    setActiveSection(section);
-    setIsMenuOpen(false);
-    setActiveDropdown(null);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
-
-  const handleApply = (subject) => {
-    const mailtoLink = `mailto:info@mysock.com?subject=${encodeURIComponent(subject)}`;
-    window.location.href = mailtoLink;
-  };
-
-  // --- COMPONENT: ENTERPRISE NAV DROP DOWN ---
-  const NavDropdown = ({ label, items, id }) => {
-    const isOpen = activeDropdown === id;
-    
-    return (
-      <div className="relative h-full flex items-center" onClick={(e) => e.stopPropagation()}>
-        <button 
-          onClick={() => setActiveDropdown(isOpen ? null : id)}
-          className={`h-full px-4 flex items-center gap-1 text-[13px] font-bold transition-all border-b-4 ${
-            isOpen ? 'border-blue-600 text-blue-600' : 'border-transparent text-slate-700 hover:text-blue-600'
-          }`}
-        >
-          {label} <ChevronDown size={14} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
-        </button>
-        {isOpen && (
-          <div className="absolute top-full left-0 w-80 bg-white shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] border border-slate-100 py-4 z-[100] animate-in fade-in slide-in-from-top-2 duration-200">
-            <div className="px-6 py-2 text-[10px] font-black text-slate-400 uppercase tracking-widest border-b border-slate-50 mb-2">
-              Explore {label}
+    <!-- TOP MINI BAR -->
+    <div class="bg-slate-900 text-white h-10 hidden md:flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between text-[10px] font-bold tracking-[0.2em] uppercase">
+            <div class="flex gap-8">
+                <span class="flex items-center gap-2"><i data-lucide="users" class="w-3 h-3"></i> Customer Center</span>
+                <span class="flex items-center gap-2"><i data-lucide="activity" class="w-3 h-3"></i> Elite Ops: Online</span>
             </div>
-            {items.map((item, idx) => (
-              <button
-                key={idx}
-                onClick={() => item.action ? item.action() : navigateTo(item.link)}
-                className="w-full flex items-center justify-between px-6 py-3 text-left hover:bg-slate-50 group transition-colors"
-              >
-                <span className="text-sm font-semibold text-slate-700 group-hover:text-blue-600">{item.title}</span>
-                <ChevronRight size={14} className="text-slate-200 group-hover:text-blue-600 transition-all" />
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-    );
-  };
-
-  // --- COMPONENT: HERO SECTION ---
-  const HeroSection = () => (
-    <section className="bg-slate-50 pt-44 pb-24 border-b border-slate-200 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-blue-600/5 -skew-x-12 translate-x-1/4" />
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
-        <div className="space-y-8 animate-in fade-in slide-in-from-left duration-700">
-          <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-blue-600/10 border border-blue-600/20 text-blue-700 text-[10px] font-black tracking-widest uppercase">
-            <Users size={14} /> Elite Engineering Squad: 10+ Masters
-          </div>
-          <h1 className="text-6xl lg:text-8xl font-black text-slate-900 leading-[0.9] tracking-tighter">
-            Deep Build. <br />
-            <span className="text-blue-600">True Surety.</span>
-          </h1>
-          <p className="text-xl text-slate-600 max-w-xl font-medium leading-relaxed">
-            Proprietary AI ecosystems and high-effort software infrastructure. 100% project delivery surety guaranteed by our elite team of 10+ software architects.
-          </p>
-          <div className="flex flex-wrap gap-4 pt-4">
-            <button 
-              onClick={() => navigateTo('contact')}
-              className="px-10 py-5 bg-blue-600 text-white font-black rounded hover:bg-slate-900 transition-all shadow-2xl shadow-blue-600/30 uppercase text-[11px] tracking-widest"
-            >
-              Consult with Sales
-            </button>
-            <button 
-              onClick={() => navigateTo('solutions')}
-              className="px-10 py-5 bg-white border-2 border-slate-300 text-slate-900 font-black rounded hover:bg-slate-50 transition-all uppercase text-[11px] tracking-widest shadow-lg"
-            >
-              View Solutions
-            </button>
-          </div>
-        </div>
-        
-        <div className="relative hidden lg:block animate-in fade-in zoom-in duration-1000">
-           <div className="bg-white p-12 rounded-[2.5rem] shadow-[0_50px_100px_-15px_rgba(0,0,0,0.12)] border border-slate-100">
-              <div className="flex items-center gap-4 mb-10 border-b border-slate-50 pb-8">
-                 <div className="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-slate-900/20 rotate-3"><Cpu size={28} /></div>
-                 <div>
-                    <div className="text-xs font-black uppercase text-slate-900 tracking-widest">MySock Core Hub v4.2</div>
-                    <div className="text-[10px] text-green-500 font-bold uppercase tracking-[0.2em]">Live Production Sync</div>
-                 </div>
-              </div>
-              <div className="space-y-6">
-                 <div className="space-y-2">
-                    <div className="flex justify-between text-[10px] font-black text-slate-400 uppercase">
-                       <span>Team_Effort_Load</span>
-                       <span>100% Efficiency</span>
-                    </div>
-                    <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-                       <div className="h-full bg-blue-600 w-full animate-pulse transition-all" />
-                    </div>
-                 </div>
-                 <div className="grid grid-cols-2 gap-4">
-                    <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100">
-                       <div className="text-[10px] text-slate-400 font-bold uppercase mb-2">HQ Nodes</div>
-                       <div className="text-sm font-black text-slate-900">Mumbai | Sangli</div>
-                    </div>
-                    <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100">
-                       <div className="text-[10px] text-slate-400 font-bold uppercase mb-2">Regional Hub</div>
-                       <div className="text-sm font-black text-slate-900">Uttar Pradesh</div>
-                    </div>
-                 </div>
-                 <div className="p-5 bg-slate-950 rounded-2xl text-blue-400 font-mono text-[10px] leading-relaxed shadow-inner">
-                    {">"} CORE_ENGINEERS: 10+_ELITE <br />
-                    {">"} DELIVERY_SURETY: 100%_ACTIVE <br />
-                    {">"} SCANNING_LABS: DEEP_WORK_SYNC <br />
-                    {">"} STATUS: SECURE_OPS_ENABLED
-                 </div>
-              </div>
-           </div>
-        </div>
-      </div>
-    </section>
-  );
-
-  // --- COMPONENT: CONTACT PAGE (INSTITUTIONAL ARCHITECTURE) ---
-  const ContactPage = () => (
-    <div className="bg-white py-24 animate-in fade-in duration-500">
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-20">
-        {/* Sidebar */}
-        <div className="space-y-16">
-          <div className="space-y-6">
-            <h2 className="text-6xl font-black text-slate-900 tracking-tighter">Contact Us</h2>
-            <div className="space-y-4">
-              <button className="w-full p-8 bg-slate-50 border border-slate-100 rounded-2xl text-left hover:border-blue-600 transition-all flex items-center justify-between group shadow-sm">
-                <div>
-                  <div className="text-xs font-black uppercase text-blue-600 mb-1">Live Response</div>
-                  <div className="text-lg font-bold text-slate-900 tracking-tight">Enterprise Chat</div>
-                </div>
-                <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white scale-0 group-hover:scale-100 transition-transform">
-                  <ArrowRight size={20} />
-                </div>
-              </button>
-              <button className="w-full p-8 bg-slate-50 border border-slate-100 rounded-2xl text-left hover:border-blue-600 transition-all flex items-center justify-between group shadow-sm">
-                <div>
-                  <div className="text-xs font-black uppercase text-blue-600 mb-1">Elite Line</div>
-                  <div className="text-lg font-bold text-slate-900 tracking-tight">+91 9897470837</div>
-                </div>
-                <Phone className="text-slate-300 group-hover:text-blue-600 transition-colors" />
-              </button>
+            <div class="flex gap-8">
+                <span>Mumbai / Sangli / UP HQ Active</span>
+                <span class="flex items-center gap-2 uppercase">English <i data-lucide="chevron-down" class="w-3 h-3"></i></span>
             </div>
-          </div>
-          
-          <div className="space-y-8 pt-12 border-t border-slate-100">
-             <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">Global Offices</h3>
-             <div className="space-y-10">
-                <div className="group">
-                   <div className="flex items-center gap-3 mb-2">
-                     <MapPin size={18} className="text-blue-600" />
-                     <div className="text-[11px] font-black uppercase text-slate-400 group-hover:text-slate-900 transition-colors">Mumbai (HQ)</div>
-                   </div>
-                   <p className="text-sm text-slate-600 font-medium leading-relaxed pl-7">Executive Wing, 15th Floor, BKC Center, Mumbai, MH</p>
-                </div>
-                <div className="group">
-                   <div className="flex items-center gap-3 mb-2">
-                     <MapPin size={18} className="text-indigo-600" />
-                     <div className="text-[11px] font-black uppercase text-slate-400 group-hover:text-slate-900 transition-colors">Sangli Strategic Center</div>
-                   </div>
-                   <p className="text-sm text-slate-600 font-medium leading-relaxed pl-7">MySock Labs, Industrial Engineering Block, Sangli, MH</p>
-                </div>
-                <div className="group">
-                   <div className="flex items-center gap-3 mb-2">
-                     <MapPin size={18} className="text-cyan-600" />
-                     <div className="text-[11px] font-black uppercase text-slate-400 group-hover:text-slate-900 transition-colors">Uttar Pradesh Hub</div>
-                   </div>
-                   <p className="text-sm text-slate-600 font-medium leading-relaxed pl-7">Tech Innovation Node 7, IT City, Lucknow, UP</p>
-                </div>
-             </div>
-          </div>
         </div>
-
-        {/* REPLICATED SUSE FORM INFRASTRUCTURE */}
-        <div className="lg:col-span-2 bg-white border border-slate-100 p-12 lg:p-16 rounded-[3rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.06)] relative overflow-hidden">
-           <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/[0.03] rounded-bl-full" />
-           <h3 className="text-3xl font-black text-slate-900 mb-10 pb-6 border-b border-slate-100 tracking-tight">Request a Sales Call</h3>
-           <form className="grid md:grid-cols-2 gap-10" onSubmit={(e) => e.preventDefault()}>
-              <div className="space-y-3">
-                 <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">* First Name</label>
-                 <input type="text" className="w-full border-b-2 border-slate-100 py-3 focus:border-blue-600 outline-none transition-all text-slate-900 font-medium bg-transparent" />
-              </div>
-              <div className="space-y-3">
-                 <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">* Last Name</label>
-                 <input type="text" className="w-full border-b-2 border-slate-100 py-3 focus:border-blue-600 outline-none transition-all text-slate-900 font-medium bg-transparent" />
-              </div>
-              <div className="space-y-3">
-                 <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">* Corporate Email</label>
-                 <input type="email" className="w-full border-b-2 border-slate-100 py-3 focus:border-blue-600 outline-none transition-all text-slate-900 font-medium bg-transparent" />
-              </div>
-              <div className="space-y-3">
-                 <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">* Company Name</label>
-                 <input type="text" className="w-full border-b-2 border-slate-100 py-3 focus:border-blue-600 outline-none transition-all text-slate-900 font-medium bg-transparent" />
-              </div>
-              <div className="space-y-3">
-                 <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">* Job Function</label>
-                 <select className="w-full border-b-2 border-slate-100 py-3 focus:border-blue-600 outline-none transition-all appearance-none bg-transparent font-medium cursor-pointer">
-                    <option>C-Level / Executive</option>
-                    <option>Director / VP</option>
-                    <option>Senior Architect</option>
-                    <option>Lead Engineer</option>
-                    <option>Manager</option>
-                 </select>
-              </div>
-              <div className="space-y-3">
-                 <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">* Regional Hub</label>
-                 <select className="w-full border-b-2 border-slate-100 py-3 focus:border-blue-600 outline-none transition-all appearance-none bg-transparent font-medium cursor-pointer">
-                    <option>India (Sangli / Mumbai / UP)</option>
-                    <option>Global Remote / Digital Node</option>
-                    <option>Asia Pacific</option>
-                    <option>Europe / North America</option>
-                 </select>
-              </div>
-              <div className="md:col-span-2 space-y-3">
-                 <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">* Deep Requirements</label>
-                 <textarea className="w-full border-b-2 border-slate-100 py-3 focus:border-blue-600 outline-none transition-all resize-none text-slate-900 font-medium bg-transparent" rows={4} placeholder="Describe your software needs..."></textarea>
-              </div>
-
-              <div className="md:col-span-2 flex items-start gap-5 p-6 bg-slate-50 border border-slate-100 rounded-2xl">
-                 <input type="checkbox" className="mt-1 w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
-                 <p className="text-xs text-slate-500 leading-relaxed font-medium">
-                    I confirm that I have read the **MySock Privacy SLA**. I consent to the elite 10+ engineering team processing my data for bespoke technical collaboration.
-                 </p>
-              </div>
-
-              <div className="md:col-span-2 pt-6">
-                 <button className="px-14 py-5 bg-blue-600 text-white font-black rounded-xl hover:bg-slate-950 transition-all shadow-[0_15px_40px_-5px_rgba(37,99,235,0.4)] uppercase text-[11px] tracking-[0.2em] w-full md:w-auto active:scale-95">
-                    Request a Sales Brief
-                 </button>
-              </div>
-           </form>
-           
-           <div className="mt-16 pt-10 border-t border-slate-100 flex flex-col md:flex-row gap-10 items-center justify-between">
-              <div className="flex gap-8">
-                 <button onClick={() => handleApply('Internship Application')} className="group flex items-center gap-3 text-[10px] font-black uppercase text-blue-600 hover:text-slate-900 transition-colors">
-                    <GraduationCap size={18} className="group-hover:-rotate-12 transition-transform" /> Internship Hub
-                 </button>
-                 <button onClick={() => handleApply('Job Application')} className="group flex items-center gap-3 text-[10px] font-black uppercase text-slate-900 hover:text-blue-600 transition-colors">
-                    <Briefcase size={18} className="group-hover:-translate-y-1 transition-transform" /> Career Ops
-                 </button>
-              </div>
-              <div className="text-right">
-                 <div className="text-[9px] text-slate-400 font-black uppercase tracking-[0.3em] mb-1">Surety Verified</div>
-                 <div className="text-[8px] text-blue-500 font-mono">10+ ENGINEERS SYNCED: ACTIVE</div>
-              </div>
-           </div>
-        </div>
-      </div>
     </div>
-  );
 
-  return (
-    <div className="bg-white min-h-screen text-slate-900 font-sans selection:bg-blue-600/10 selection:text-blue-600 antialiased">
-      {/* ENTERPRISE NAVBAR - SUSE INSPIRED INSTITUTIONAL DESIGN */}
-      <nav className={`fixed top-0 w-full z-[100] bg-white transition-all duration-300 ${scrolled ? 'shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)]' : 'border-b border-slate-100'}`}>
-        {/* Elite Top Mini Bar */}
-        <div className="bg-slate-950 text-white h-10 hidden md:flex items-center border-b border-white/5">
-           <div className="max-w-7xl mx-auto px-6 w-full flex justify-between text-[10px] font-bold tracking-[0.2em] uppercase">
-              <div className="flex gap-10">
-                 <span className="flex items-center gap-2 cursor-pointer hover:text-blue-400 transition-colors"><Trophy size={12} /> Elite Customer Ops</span>
-                 <span className="flex items-center gap-2 cursor-pointer hover:text-blue-400 transition-colors"><Activity size={12} /> System Status: Online</span>
-              </div>
-              <div className="flex gap-10">
-                 <span className="flex items-center gap-2 cursor-pointer hover:text-blue-400 transition-colors">Regional: Sangli/UP <ChevronDown size={10} /></span>
-                 <span className="flex items-center gap-2 cursor-pointer hover:text-blue-400 transition-colors"><ShoppingCart size={12} /> Project Shop</span>
-              </div>
-           </div>
-        </div>
-        
-        {/* Institutional Nav Bar */}
-        <div className="max-w-7xl mx-auto h-20 px-6 flex justify-between items-center">
-          <div className="flex items-center gap-4 cursor-pointer h-full group" onClick={() => navigateTo('home')}>
-            <div className="w-11 h-11 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-xl shadow-blue-600/20 group-hover:scale-110 transition-transform">M</div>
-            <div className="flex flex-col">
-               <span className="text-2xl font-black tracking-tighter text-slate-900 leading-none">MySock</span>
-               <span className="text-[8px] font-mono text-blue-600 tracking-[0.4em] uppercase font-bold">Deep_Software</span>
+    <!-- MAIN INSTITUTIONAL NAVBAR -->
+    <nav class="sticky top-0 w-full z-50 bg-white border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto h-20 px-6 flex justify-between items-center">
+            <!-- Logo Area -->
+            <div class="flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo(0,0)">
+                <div class="w-12 h-12 bg-slate-900 rounded-sm flex items-center justify-center text-white font-black text-xl group-hover:bg-blue-600 transition-all">M</div>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-black tracking-tighter text-slate-900 leading-none">MySock</span>
+                    <span class="text-[8px] font-mono text-blue-600 tracking-[0.3em] uppercase font-bold">Elite_Engineers</span>
+                </div>
             </div>
-          </div>
 
-          <div className="hidden lg:flex items-center h-full gap-2">
-            <NavDropdown 
-              id="products" 
-              label="Ecosystem" 
-              items={[
-                { title: "MySock AI Engine v4.2", link: "solutions" },
-                { title: "Autonomous Agent Hub", link: "solutions" },
-                { title: "Zero-Trust Infrastructure", link: "solutions" }
-              ]} 
-            />
-            <NavDropdown 
-              id="solutions" 
-              label="Solutions" 
-              items={[
-                { title: "Retail Smart Sync", link: "solutions" },
-                { title: "Mall Enterprise Mesh", link: "solutions" },
-                { title: "Corporate Knowledge Bots", link: "solutions" }
-              ]} 
-            />
-            <NavDropdown 
-              id="support" 
-              label="Deep Support" 
-              items={[
-                { title: "Open 10+ Engineer Ticket", link: "contact" },
-                { title: "Knowledge Architecture", link: "labs" },
-                { title: "Direct Lead Support", link: "contact" }
-              ]} 
-            />
-            <NavDropdown 
-              id="about" 
-              label="The Team" 
-              items={[
-                { title: "Sangli Engineering Hub", link: "contact" },
-                { title: "UP Deployment Center", link: "contact" },
-                { title: "Mumbai Executive Wing", link: "contact" },
-                { title: "Ethics & Surety Policy", link: "home" }
-              ]} 
-            />
-            <button 
-               onClick={() => navigateTo('contact')}
-               className={`h-full px-6 flex items-center text-[13px] font-bold transition-all border-b-4 ${activeSection === 'contact' ? 'text-blue-600 border-blue-600' : 'border-transparent text-slate-700 hover:text-blue-600'}`}
-            >
-               Contact Sales
-            </button>
-            <button 
-              className="ml-8 flex items-center gap-3 bg-slate-950 text-white px-8 py-3 rounded-xl text-[10px] font-black tracking-widest uppercase hover:bg-blue-600 transition-all shadow-xl shadow-slate-950/20"
-            >
-              <Download size={14} /> Free Labs
-            </button>
-          </div>
-
-          <button className="lg:hidden text-slate-900 p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
-          </button>
-        </div>
-      </nav>
-
-      {/* Main Dynamic Viewport */}
-      <main>
-        {activeSection === 'home' && (
-          <div className="animate-in fade-in duration-1000">
-            <HeroSection />
-            {/* Elite Trust Section */}
-            <section className="py-24 bg-white">
-              <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12">
-                 {[
-                   { icon: <ShieldCheck />, title: "100% Surety", detail: "Military-grade delivery guarantees on every deep engineering build from Sangli to UP." },
-                   { icon: <Zap />, title: "Affordable Scale", detail: "Elite corporate software architecture at a price point optimized for regional growth." },
-                   { icon: <Workflow />, title: "Deep Execution", detail: "We don't just plan; our 10+ engineers build the core autonomous software engines." }
-                 ].map((v, i) => (
-                   <div key={i} className="group p-10 bg-slate-50 border border-slate-100 rounded-[2rem] hover:bg-white hover:shadow-2xl hover:border-blue-600/30 transition-all duration-500">
-                      <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-blue-600 shadow-sm mb-8 group-hover:scale-110 transition-transform">{v.icon}</div>
-                      <h3 className="text-2xl font-black text-slate-900 mb-4">{v.title}</h3>
-                      <p className="text-sm text-slate-500 font-medium leading-relaxed">{v.detail}</p>
-                   </div>
-                 ))}
-              </div>
-            </section>
-          </div>
-        )}
-        
-        {activeSection === 'solutions' && (
-           <div className="pt-48 pb-24 max-w-7xl mx-auto px-6 animate-in fade-in slide-in-from-bottom duration-700">
-              <div className="mb-16">
-                 <h2 className="text-6xl font-black text-slate-900 tracking-tight mb-4">Enterprise Systems</h2>
-                 <p className="text-xl text-slate-500 font-medium">Bespoke architectures crafted by our elite 10+ engineer squad.</p>
-              </div>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-                {[
-                  { title: "Autonomous Mall Sync", desc: "Unified retail ecosystem for large-scale commerce hubs.", tag: "Elite Core" },
-                  { title: "Private AI Server Nodes", desc: "In-house secure LLM hosting for corporate knowledge.", tag: "Security Node" },
-                  { title: "Real-time POS Mesh", desc: "Decentralized sync architecture for multi-location grocery.", tag: "Deep Sync" }
-                ].map((s, i) => (
-                  <div key={i} className="p-12 bg-white border border-slate-100 rounded-[2.5rem] hover:shadow-2xl hover:border-blue-600/30 transition-all group">
-                     <div className="text-[10px] font-black text-blue-600 uppercase mb-6 tracking-widest">{s.tag}</div>
-                     <h3 className="text-2xl font-black text-slate-900 mb-4">{s.title}</h3>
-                     <p className="text-sm text-slate-500 font-medium leading-relaxed mb-10">{s.desc}</p>
-                     <button onClick={() => navigateTo('contact')} className="flex items-center gap-2 text-xs font-black uppercase text-slate-900 group-hover:text-blue-600 transition-colors">Launch Briefing <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform"/></button>
-                  </div>
-                ))}
-              </div>
-           </div>
-        )}
-
-        {activeSection === 'labs' && (
-           <div className="pt-48 pb-24 max-w-7xl mx-auto px-6 animate-in fade-in zoom-in duration-700">
-              <div className="bg-slate-950 text-white p-20 lg:p-32 rounded-[3.5rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] relative overflow-hidden">
-                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-600/10 blur-[150px] rounded-full" />
-                 <h2 className="text-7xl font-black tracking-tighter mb-10">Deep Work Labs</h2>
-                 <p className="text-2xl text-slate-400 max-w-2xl mb-16 leading-relaxed font-light">Our elite 10+ engineers are currently developing zero-latency POS sync and military-grade chatbot encryption paths.</p>
-                 <div className="grid md:grid-cols-3 gap-12 border-t border-white/5 pt-16">
-                    <div>
-                       <div className="text-4xl font-black text-blue-500 mb-3">100%</div>
-                       <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500">Surety Standard</div>
-                    </div>
-                    <div>
-                       <div className="text-4xl font-black text-white mb-3">Sangli HQ</div>
-                       <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500">Core R&D Engine</div>
-                    </div>
-                    <div>
-                       <div className="text-4xl font-black text-white mb-3">UP Hub</div>
-                       <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500">Node Optimization</div>
-                    </div>
-                 </div>
-              </div>
-           </div>
-        )}
-
-        {activeSection === 'contact' && <ContactPage />}
-      </main>
-
-      {/* INSTITUTIONAL ENTERPRISE FOOTER (REPLICATED SUSE ARCHITECTURE) */}
-      <footer className="bg-white pt-32 pb-16 border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-6">
-           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
-              <div className="space-y-10">
-                 <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-lg shadow-blue-600/20">M</div>
-                    <span className="text-2xl font-black text-slate-900 tracking-tighter">MySock</span>
-                 </div>
-                 <p className="text-sm text-slate-500 font-medium leading-relaxed">
-                    The elite 10+ engineer boutique for deep software builds. Global sync from Sangli to Uttar Pradesh.
-                 </p>
-                 <div className="flex gap-5">
-                    {[Globe, ShieldCheck, Activity, Search].map((Icon, i) => (
-                      <div key={i} className="w-10 h-10 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:text-blue-600 transition-all cursor-pointer shadow-sm"><Icon size={18}/></div>
-                    ))}
-                 </div>
-              </div>
-
-              <div>
-                 <h4 className="text-[11px] font-black uppercase text-slate-900 tracking-[0.3em] mb-10">Company</h4>
-                 <ul className="space-y-5 text-sm text-slate-500 font-medium">
-                    <li><button onClick={() => navigateTo('contact')} className="hover:text-blue-600 transition-colors">Technical Support</button></li>
-                    <li><button onClick={() => handleApply('Job Inquiry')} className="hover:text-blue-600 transition-colors">Jobs & Careers</button></li>
-                    <li><button onClick={() => navigateTo('home')} className="hover:text-blue-600 transition-colors">Partners Network</button></li>
-                    <li><button onClick={() => navigateTo('contact')} className="hover:text-blue-600 transition-colors">Global Offices</button></li>
-                 </ul>
-              </div>
-
-              <div>
-                 <h4 className="text-[11px] font-black uppercase text-slate-900 tracking-[0.3em] mb-10">Strategy Hubs</h4>
-                 <ul className="space-y-8 text-sm text-slate-500 font-medium">
-                    <li className="group">
-                       <span className="block text-slate-900 font-black text-xs uppercase mb-1">Mumbai Executive</span>
-                       <span className="text-xs font-medium opacity-60">Corporate Tower, BKC, MH</span>
-                    </li>
-                    <li className="group">
-                       <span className="block text-slate-900 font-black text-xs uppercase mb-1">Sangli Engineering</span>
-                       <span className="text-xs font-medium opacity-60">Industrial Center A, Sangli, MH</span>
-                    </li>
-                    <li className="group">
-                       <span className="block text-slate-900 font-black text-xs uppercase mb-1">Uttar Pradesh Tech</span>
-                       <span className="text-xs font-medium opacity-60">Regional Node 7, Lucknow, UP</span>
-                    </li>
-                 </ul>
-              </div>
-
-              <div>
-                 <h4 className="text-[11px] font-black uppercase text-slate-900 tracking-[0.3em] mb-10">Elite Support</h4>
-                 <div className="p-8 bg-slate-50 border border-slate-100 rounded-[2rem] space-y-6">
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Open Elite Case</p>
-                    <button 
-                      onClick={() => navigateTo('contact')}
-                      className="w-full py-4 bg-blue-600 text-white font-black rounded-xl uppercase text-[10px] tracking-[0.2em] hover:bg-slate-950 transition-all shadow-xl shadow-blue-600/20"
-                    >
-                      Open Ticket
+            <!-- Desktop Nav (IIT Jodhpur Style) -->
+            <div class="hidden lg:flex items-center h-full">
+                <a href="#home" class="nav-item h-full px-6 flex items-center text-[13px] font-bold text-slate-700 hover:bg-slate-50 transition-all">Home</a>
+                
+                <div class="relative h-full group">
+                    <button onclick="toggleDropdown('solutions-menu')" class="nav-item h-full px-6 flex items-center gap-2 text-[13px] font-bold text-slate-700 hover:bg-slate-50 transition-all">
+                        Solutions <i data-lucide="chevron-down" class="w-4 h-4"></i>
                     </button>
-                    <div className="flex items-center gap-2 text-[9px] text-blue-600 font-black uppercase">
-                       <Activity size={12} className="animate-pulse" /> 10+ Squad Response Ready
+                    <div id="solutions-menu" class="nav-dropdown absolute top-full left-0 w-72 bg-white shadow-2xl border-t-4 border-blue-600 z-[100] py-2">
+                        <a href="#solutions" class="block px-6 py-4 text-sm font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-700 border-b border-slate-50">Autonomous AI Agents</a>
+                        <a href="#solutions" class="block px-6 py-4 text-sm font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-700 border-b border-slate-50">Private Server Nodes</a>
+                        <a href="#solutions" class="block px-6 py-4 text-sm font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-700">Bespoke Enterprise Software</a>
                     </div>
-                 </div>
-              </div>
-           </div>
+                </div>
 
-           <div className="py-12 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-10">
-              <div className="flex flex-wrap justify-center gap-10 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                 <a href="#" className="hover:text-blue-600 transition-colors">Legal Terms</a>
-                 <a href="#" className="hover:text-blue-600 transition-colors">SLA Privacy</a>
-                 <a href="#" className="hover:text-blue-600 transition-colors">Ethics Hub</a>
-                 <a href="#" className="hover:text-blue-600 transition-colors">Cookie Data</a>
-              </div>
-              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
-                 © 2026 MYSOCK LABS GLOBAL. ALL RIGHTS RESERVED.
-              </p>
-           </div>
-        </div>
-      </footer>
+                <div class="relative h-full group">
+                    <button onclick="toggleDropdown('labs-menu')" class="nav-item h-full px-6 flex items-center gap-2 text-[13px] font-bold text-slate-700 hover:bg-slate-50 transition-all">
+                        Deep Labs <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </button>
+                    <div id="labs-menu" class="nav-dropdown absolute top-full left-0 w-72 bg-white shadow-2xl border-t-4 border-blue-600 z-[100] py-2">
+                        <a href="#labs" class="block px-6 py-4 text-sm font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-700 border-b border-slate-50">Active Ops Scan</a>
+                        <a href="#labs" class="block px-6 py-4 text-sm font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-700 border-b border-slate-50">Wasm Edge Research</a>
+                        <a href="#labs" class="block px-6 py-4 text-sm font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-700">100% Surety Protocol</a>
+                    </div>
+                </div>
 
-      {/* Mobile Nav Overlay */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-[200] bg-white animate-in fade-in duration-300 flex flex-col items-center justify-center p-6">
-           <button className="absolute top-10 right-10 text-slate-900 p-2" onClick={() => setIsMenuOpen(false)}><X size={44}/></button>
-           <div className="space-y-12 text-center w-full">
-              {['Home', 'Products', 'Solutions', 'The Team', 'Contact'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => navigateTo(item.toLowerCase() === 'the team' ? 'about' : item.toLowerCase() === 'home' ? 'home' : item.toLowerCase())}
-                  className="block w-full text-5xl font-black uppercase tracking-tighter text-slate-900 hover:text-blue-600 transition-colors"
-                >
-                  {item}
-                </button>
-              ))}
-              <div className="pt-12 border-t border-slate-100 flex flex-col items-center gap-6">
-                 <button onClick={() => handleApply('Internship')} className="text-sm font-black text-blue-600 uppercase tracking-widest">Apply Internship</button>
-                 <button onClick={() => handleApply('Careers')} className="text-sm font-black text-slate-900 uppercase tracking-widest">Career Portals</button>
-              </div>
-           </div>
+                <div class="relative h-full group">
+                    <button onclick="toggleDropdown('careers-menu')" class="nav-item h-full px-6 flex items-center gap-2 text-[13px] font-bold text-slate-700 hover:bg-slate-50 transition-all">
+                        Contact & Careers <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </button>
+                    <div id="careers-menu" class="nav-dropdown absolute top-full left-0 w-72 bg-white shadow-2xl border-t-4 border-blue-600 z-[100] py-2">
+                        <a href="#contact" class="block px-6 py-4 text-sm font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-700 border-b border-slate-50">Mumbai / Sangli / UP HQ</a>
+                        <a href="mailto:info@mysock.com?subject=Internship Application" class="block px-6 py-4 text-sm font-semibold text-blue-600 hover:bg-blue-50 border-b border-slate-50">Apply for Internship</a>
+                        <a href="mailto:info@mysock.com?subject=Job Application" class="block px-6 py-4 text-sm font-semibold text-indigo-600 hover:bg-blue-50">Join Elite 10+ Team</a>
+                    </div>
+                </div>
+
+                <a href="#contact" class="ml-6 bg-blue-600 text-white px-8 py-3 rounded-sm text-[10px] font-black tracking-widest uppercase hover:bg-slate-900 transition-all shadow-lg shadow-blue-600/20">Consultation</a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="lg:hidden p-2 text-slate-900" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
         </div>
-      )}
+    </nav>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-[200] bg-white p-6 flex flex-col gap-8">
+        <button class="self-end p-4" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"><i data-lucide="x" class="w-10 h-10"></i></button>
+        <a href="#home" class="text-4xl font-black uppercase text-slate-900" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a>
+        <a href="#solutions" class="text-4xl font-black uppercase text-slate-900" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Solutions</a>
+        <a href="#labs" class="text-4xl font-black uppercase text-slate-900" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Labs</a>
+        <a href="#contact" class="text-4xl font-black uppercase text-slate-900" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
     </div>
-  );
-};
 
-export default App;
+    <!-- HERO SECTION -->
+    <section id="home" class="pt-32 pb-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-10">
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-slate-900 text-white text-[10px] font-black tracking-widest uppercase">
+                    <i data-lucide="activity" class="w-4 h-4"></i> Elite Engineering Deployment Unit
+                </div>
+                <h1 class="text-7xl lg:text-9xl font-black text-slate-900 leading-[0.85] tracking-tighter">
+                    Deep Build. <br>
+                    <span class="text-blue-600">True Surety.</span>
+                </h1>
+                <p class="text-xl text-slate-500 max-w-xl leading-relaxed font-medium">
+                    A high-effort team of 10+ elite software masters. We build corporate-grade AI infrastructure with 100% project delivery surety and affordable global scaling.
+                </p>
+                <div class="flex flex-wrap gap-6 pt-4">
+                    <a href="#solutions" class="px-12 py-5 bg-blue-600 text-white font-black rounded-sm hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/30 uppercase text-xs tracking-widest">Explore Solutions</a>
+                    <a href="#contact" class="px-12 py-5 border-2 border-slate-900 text-slate-900 font-black rounded-sm hover:bg-slate-900 hover:text-white transition-all uppercase text-xs tracking-widest">Join the Team</a>
+                </div>
+                <div class="flex gap-10 pt-10 border-t border-slate-100">
+                    <div><div class="text-3xl font-black text-slate-900">10+</div><div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Engineers</div></div>
+                    <div><div class="text-3xl font-black text-slate-900">100%</div><div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Surety</div></div>
+                    <div><div class="text-3xl font-black text-slate-900">24/7</div><div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Ops Support</div></div>
+                </div>
+            </div>
+
+            <div class="relative hidden lg:block">
+                <div class="bg-white p-12 rounded-xl shadow-2xl border border-slate-100 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-[100px] transition-all group-hover:bg-blue-100"></div>
+                    <div class="flex items-center gap-4 mb-10">
+                        <div class="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center text-white"><i data-lucide="cpu" class="w-6 h-6"></i></div>
+                        <div>
+                            <div class="text-xs font-black uppercase text-slate-900">MySock Engine v4.2</div>
+                            <div class="text-[10px] text-green-500 font-bold tracking-widest">SYSTEM_OPTIMIZED</div>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="p-6 bg-slate-50 border border-slate-100 rounded-lg flex justify-between items-center">
+                            <div class="flex items-center gap-4">
+                                <i data-lucide="map-pin" class="text-blue-600 w-5 h-5"></i>
+                                <div><div class="text-[11px] font-black uppercase">Sangli Strategic HQ</div><div class="text-[9px] text-slate-400">Core Build Active</div></div>
+                            </div>
+                            <i data-lucide="activity" class="text-green-500 w-4 h-4"></i>
+                        </div>
+                        <div class="p-6 bg-slate-50 border border-slate-100 rounded-lg flex justify-between items-center">
+                            <div class="flex items-center gap-4">
+                                <i data-lucide="map-pin" class="text-indigo-600 w-5 h-5"></i>
+                                <div><div class="text-[11px] font-black uppercase">Uttar Pradesh Node</div><div class="text-[9px] text-slate-400">Distribution Hub</div></div>
+                            </div>
+                            <i data-lucide="activity" class="text-green-500 w-4 h-4"></i>
+                        </div>
+                        <div class="p-6 bg-slate-950 rounded text-blue-400 font-mono text-[10px] leading-relaxed uppercase tracking-widest">
+                            > ELITE_ENGINEERS: 10+_ACTIVE <br>
+                            > DELIVERY_SURETY: 100%_CERTAIN <br>
+                            > DEEP_WORK_STATUS: SYNCED
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTIONS SECTION -->
+    <section id="solutions" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
+                <h2 class="text-6xl font-black text-slate-900 tracking-tighter">Enterprise Power</h2>
+                <p class="text-slate-500 text-lg">Bespoke software architectures built by our elite 10+ engineering force.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="p-12 bg-white rounded-xl shadow-xl border border-slate-100 hover:-translate-y-2 transition-all">
+                    <div class="w-16 h-16 rounded-xl bg-slate-950 text-white flex items-center justify-center mb-8"><i data-lucide="monitor" class="w-8 h-8"></i></div>
+                    <h3 class="text-2xl font-black text-slate-900 mb-4">Autonomous Agents</h3>
+                    <p class="text-sm text-slate-500 mb-8 leading-relaxed font-medium">Bespoke AI employees that manage marketing and inventory without human input.</p>
+                    <div class="text-[10px] font-black text-blue-600 tracking-widest uppercase">Elite Build Active</div>
+                </div>
+                <div class="p-12 bg-white rounded-xl shadow-xl border border-slate-100 hover:-translate-y-2 transition-all">
+                    <div class="w-16 h-16 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-8"><i data-lucide="server" class="w-8 h-8"></i></div>
+                    <h3 class="text-2xl font-black text-slate-900 mb-4">Private AI Nodes</h3>
+                    <p class="text-sm text-slate-500 mb-8 leading-relaxed font-medium">Secure server infrastructure for internal corporate chatbots and data hosting.</p>
+                    <div class="text-[10px] font-black text-blue-600 tracking-widest uppercase">Zero-Trust Secured</div>
+                </div>
+                <div class="p-12 bg-white rounded-xl shadow-xl border border-slate-100 hover:-translate-y-2 transition-all">
+                    <div class="w-16 h-16 rounded-xl bg-slate-950 text-white flex items-center justify-center mb-8"><i data-lucide="workflow" class="w-8 h-8"></i></div>
+                    <h3 class="text-2xl font-black text-slate-900 mb-4">Retail Mesh Sync</h3>
+                    <p class="text-sm text-slate-500 mb-8 leading-relaxed font-medium">Enterprise platforms that synchronize thousands of retail nodes in real-time.</p>
+                    <div class="text-[10px] font-black text-blue-600 tracking-widest uppercase">100% Surety Validated</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LABS SECTION -->
+    <section id="labs" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="bg-slate-950 rounded-[3rem] p-16 lg:p-24 text-white relative overflow-hidden shadow-2xl">
+                <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-600/10 blur-[150px] rounded-full"></div>
+                <div class="grid lg:grid-cols-2 gap-20 items-center relative z-10">
+                    <div class="space-y-10">
+                        <h2 class="text-6xl font-black tracking-tighter">Deep Labs.</h2>
+                        <p class="text-xl text-slate-400 font-medium leading-relaxed">Our elite 10+ software squad is currently conducting deep-work builds on next-gen POS sync and military-grade chatbot hosting.</p>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 text-slate-300 font-mono text-sm uppercase tracking-widest"><div class="w-2 h-2 rounded-full bg-blue-500"></div> AI Inventory Orchestration</div>
+                            <div class="flex items-center gap-4 text-slate-300 font-mono text-sm uppercase tracking-widest"><div class="w-2 h-2 rounded-full bg-blue-500"></div> Zero-Latency POS Mesh</div>
+                            <div class="flex items-center gap-4 text-slate-300 font-mono text-sm uppercase tracking-widest"><div class="w-2 h-2 rounded-full bg-blue-500"></div> Vector Search R&D</div>
+                        </div>
+                        <button onclick="window.location.href='#contact'" class="px-12 py-5 bg-white text-slate-950 font-black rounded-sm uppercase text-xs tracking-widest hover:bg-blue-600 hover:text-white transition-all">Collaborate with Labs</button>
+                    </div>
+                    <div class="p-10 rounded-2xl bg-black/50 border border-white/5 font-mono text-[11px] text-blue-400/80 leading-relaxed uppercase tracking-widest">
+                        $ mysock --deep-scan --all <br>
+                        PROJECTS: 5_ACTIVE_DEPLOY <br>
+                        QUALITY_CERTAINTY: 100% <br>
+                        ENGINEERS: ELITE_10+_MASTER <br>
+                        HUB_SYNC: SANGLI_UP_MUMBAI <br>
+                        SURETY: GUARANTEED
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION (REPLICATED SUSE ARCHITECTURE) -->
+    <section id="contact" class="py-24 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-20">
+            <!-- Sidebar -->
+            <div class="space-y-16">
+                <h2 class="text-7xl font-black text-slate-900 tracking-tighter">Talk to Sales.</h2>
+                <div class="space-y-10">
+                    <div class="flex gap-6 group">
+                        <div class="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center text-white"><i data-lucide="mail"></i></div>
+                        <div><div class="text-xs font-black uppercase text-slate-400 mb-1">Email Inquiries</div><div class="text-lg font-bold">info@mysock.com</div></div>
+                    </div>
+                    <div class="flex gap-6 group">
+                        <div class="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center text-white"><i data-lucide="phone"></i></div>
+                        <div><div class="text-xs font-black uppercase text-slate-400 mb-1">Corporate Hotline</div><div class="text-lg font-bold">+91 9897470837</div></div>
+                    </div>
+                    <div class="flex gap-6 group">
+                        <div class="w-14 h-14 bg-indigo-600 rounded-xl flex items-center justify-center text-white"><i data-lucide="map-pin"></i></div>
+                        <div><div class="text-xs font-black uppercase text-slate-400 mb-1">Global HQ</div><div class="text-lg font-bold">Mumbai / Sangli / UP</div></div>
+                    </div>
+                </div>
+                <div class="pt-10 border-t border-slate-100 flex gap-6">
+                    <button onclick="window.location.href='mailto:info@mysock.com?subject=Internship'" class="flex-1 py-4 bg-slate-50 border border-slate-200 rounded text-xs font-bold uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all">Internship</button>
+                    <button onclick="window.location.href='mailto:info@mysock.com?subject=Job'" class="flex-1 py-4 bg-slate-50 border border-slate-200 rounded text-xs font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all">Career/Job</button>
+                </div>
+            </div>
+
+            <!-- SUSE FORM -->
+            <div class="lg:col-span-2 bg-white border border-slate-200 p-12 lg:p-16 rounded-[2rem] shadow-2xl relative">
+                <div class="absolute top-0 right-12 -translate-y-1/2 px-6 py-2 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest rounded-sm">Enterprise Inquiry</div>
+                <form class="grid md:grid-cols-2 gap-10" onsubmit="event.preventDefault(); alert('Request Submitted Successfully. Our 10+ Elite Squad will reach out shortly.');">
+                    <div class="space-y-3">
+                        <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest">* First Name</label>
+                        <input type="text" required class="w-full border-b-2 border-slate-100 py-3 focus:border-blue-600 outline-none transition-all text-slate-900 font-medium">
+                    </div>
+                    <div class="space-y-3">
+                        <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest">* Last Name</label>
+                        <input type="text" required class="w-full border-b-2 border-slate-100 py-3 focus:border-blue-600 outline-none transition-all text-slate-900 font-medium">
+                    </div>
+                    <div class="space-y-3">
+                        <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest">* Corporate Email</label>
+                        <input type="email" required class="w-full border-b-2 border-slate-100 py-3 focus:border-blue-600 outline-none transition-all text-slate-900 font-medium">
+                    </div>
+                    <div class="space-y-3">
+                        <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest">* Job Function</label>
+                        <select class="w-full border-b-2 border-slate-100 py-3 outline-none">
+                            <option>Architect / Engineer</option>
+                            <option>CEO / Executive</option>
+                            <option>Director / Manager</option>
+                            <option>Student / Intern</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2 space-y-3">
+                        <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest">* Deep Requirements</label>
+                        <textarea required class="w-full border-b-2 border-slate-100 py-3 focus:border-blue-600 outline-none transition-all resize-none" rows="4"></textarea>
+                    </div>
+                    <div class="md:col-span-2 flex items-start gap-4 p-6 bg-slate-50 rounded-xl">
+                        <input type="checkbox" required class="mt-1">
+                        <p class="text-[11px] text-slate-500 font-medium leading-relaxed uppercase tracking-tight">I hereby confirm that I have read the **MySock Privacy Policy**. I consent to the elite 10+ engineering squad processing my data for 100% Surety collaboration.</p>
+                    </div>
+                    <div class="md:col-span-2">
+                        <button type="submit" class="px-14 py-5 bg-blue-600 text-white font-black rounded hover:bg-slate-950 transition-all shadow-xl uppercase text-xs tracking-[0.2em] w-full md:w-auto">Request a Briefing</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black pt-32 pb-16">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-16 mb-24">
+            <div class="space-y-8">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-blue-600 rounded-sm flex items-center justify-center text-white font-black">M</div>
+                    <span class="text-2xl font-black text-white tracking-tighter uppercase">MySock</span>
+                </div>
+                <p class="text-slate-500 text-sm font-medium leading-relaxed">Elite squad of 10+ engineers focused on high-effort corporate builds. Delivering 100% project surety with affordable global scaling.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-black text-xs uppercase mb-8 tracking-widest pb-2 border-b-2 border-slate-800 inline-block">Global Hubs</h4>
+                <ul class="space-y-6 text-sm text-slate-600 font-medium uppercase tracking-tight">
+                    <li><span class="text-blue-500 font-bold block mb-1">Sangli HQ</span>Maharashtra, IN</li>
+                    <li><span class="text-indigo-500 font-bold block mb-1">UP Hub</span>Uttar Pradesh Node, IN</li>
+                    <li><span class="text-cyan-500 font-bold block mb-1">Mumbai Wing</span>BKC Executive, IN</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-black text-xs uppercase mb-8 tracking-widest pb-2 border-b-2 border-slate-800 inline-block">Deep Connect</h4>
+                <ul class="space-y-4 text-sm text-slate-600 font-medium uppercase tracking-tight">
+                    <li>info@mysock.com</li>
+                    <li>+91 9897470837</li>
+                    <li>Jobs & Internships</li>
+                    <li>Partners Network</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-black text-xs uppercase mb-8 tracking-widest pb-2 border-b-2 border-slate-800 inline-block">Security</h4>
+                <div class="p-6 bg-white/5 border border-white/5 rounded-xl space-y-4">
+                    <div class="text-[10px] font-black text-blue-400 uppercase tracking-widest">SLA Framework</div>
+                    <div class="text-[9px] text-slate-500 font-mono leading-relaxed">MYSOCK_ENCRYPTION_ACTIVE <br> STATUS: 100%_SURETY</div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-[10px] text-slate-700 font-black uppercase tracking-[0.4em]">© 2026 MYSOCK LABS GLOBAL. ALL RIGHTS RESERVED.</p>
+            <div class="flex gap-10 text-[10px] text-slate-700 font-black uppercase tracking-[0.2em]">
+                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors">SLA Governance</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Dropdown Logic (IIT Jodhpur Style)
+        function toggleDropdown(id) {
+            // Close all first
+            const allDropdowns = document.querySelectorAll('.nav-dropdown');
+            const allNavItems = document.querySelectorAll('.nav-item');
+            
+            allDropdowns.forEach(d => {
+                if (d.id !== id) d.classList.remove('active');
+            });
+
+            const element = document.getElementById(id);
+            const trigger = element.previousElementSibling;
+
+            element.classList.toggle('active');
+            trigger.classList.toggle('active-orange');
+            
+            // Close when clicking outside
+            window.addEventListener('click', function(e) {
+                if (!trigger.contains(e.target) && !element.contains(e.target)) {
+                    element.classList.remove('active');
+                    trigger.classList.remove('active-orange');
+                }
+            }, { once: true });
+        }
+
+        // Deep Work: Smooth Nav Highlight
+        window.addEventListener('scroll', () => {
+            const sections = ['home', 'solutions', 'labs', 'contact'];
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            let current = '';
+            sections.forEach(s => {
+                const element = document.getElementById(s);
+                if (window.scrollY >= (element.offsetTop - 100)) {
+                    current = s;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
