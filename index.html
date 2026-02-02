@@ -1,159 +1,291 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MySock | Elite Engineering & Autonomous AI</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .nav-dropdown { display: none; }
-        .nav-dropdown.active { display: block; }
-        .institutional-shadow { shadow: 0 20px 50px rgba(0,0,0,0.1); }
-        .active-orange { background-color: #c2410c !important; color: white !important; }
-        .transition-all { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-    </style>
-</head>
-<body class="bg-white text-slate-900 overflow-x-hidden">
+    <meta name="description"
+        content="MySock - Your Complete Digital Growth Partner. Premium Web Development, CRM, Marketing, and Business Transformation.">
+    <title>MySock | Premium Digital Solutions</title>
 
-    <!-- TOP MINI BAR -->
-    <div class="bg-slate-900 text-white h-10 hidden md:flex items-center">
-        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between text-[10px] font-bold tracking-[0.2em] uppercase">
-            <div class="flex gap-8">
-                <span class="flex items-center gap-2"><i data-lucide="users" class="w-3 h-3"></i> Customer Center</span>
-                <span class="flex items-center gap-2"><i data-lucide="activity" class="w-3 h-3"></i> Elite Ops: Online</span>
-            </div>
-            <div class="flex gap-8">
-                <span>Mumbai / Sangli / UP HQ Active</span>
-                <span class="flex items-center gap-2 uppercase">English <i data-lucide="chevron-down" class="w-3 h-3"></i></span>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body>
+    <!-- Magnetic Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="morph-blob morph-1"></div>
+        <div class="morph-blob morph-2"></div>
+        <div class="morph-blob morph-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="loader-content">
+            <div class="loader-logo">MySock<span>.</span></div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
             </div>
         </div>
     </div>
 
-    <!-- MAIN INSTITUTIONAL NAVBAR -->
-    <nav class="sticky top-0 w-full z-50 bg-white border-b border-slate-100 shadow-sm">
-        <div class="max-w-7xl mx-auto h-20 px-6 flex justify-between items-center">
-            <!-- Logo Area -->
-            <div class="flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo(0,0)">
-                <div class="w-12 h-12 bg-slate-900 rounded-sm flex items-center justify-center text-white font-black text-xl group-hover:bg-blue-600 transition-all">M</div>
-                <div class="flex flex-col">
-                    <span class="text-2xl font-black tracking-tighter text-slate-900 leading-none">MySock</span>
-                    <span class="text-[8px] font-mono text-blue-600 tracking-[0.3em] uppercase font-bold">Elite_Engineers</span>
-                </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo magnetic" data-strength="20">MySock<span class="dot">.</span></a>
+            <ul class="nav-links">
+                <li><a href="#services" class="nav-link magnetic" data-strength="10">Services</a></li>
+                <li><a href="#process" class="nav-link magnetic" data-strength="10">Process</a></li>
+                <li><a href="#testimonials" class="nav-link magnetic" data-strength="10">Clients</a></li>
+                <li><a href="#contact" class="btn btn-primary magnetic" data-strength="15">Get Started <i
+                            class="ph ph-arrow-right"></i></a></li>
+            </ul>
+            <div class="mobile-toggle magnetic" data-strength="10">
+                <span></span>
+                <span></span>
             </div>
-
-            <!-- Desktop Nav (IIT Jodhpur Style) -->
-            <div class="hidden lg:flex items-center h-full">
-                <a href="#home" class="nav-item h-full px-6 flex items-center text-[13px] font-bold text-slate-700 hover:bg-slate-50 transition-all">Home</a>
-                
-                <div class="relative h-full group">
-                    <button onclick="toggleDropdown('solutions-menu')" class="nav-item h-full px-6 flex items-center gap-2 text-[13px] font-bold text-slate-700 hover:bg-slate-50 transition-all">
-                        Solutions <i data-lucide="chevron-down" class="w-4 h-4"></i>
-                    </button>
-                    <div id="solutions-menu" class="nav-dropdown absolute top-full left-0 w-72 bg-white shadow-2xl border-t-4 border-blue-600 z-[100] py-2">
-                        <a href="#solutions" class="block px-6 py-4 text-sm font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-700 border-b border-slate-50">Autonomous AI Agents</a>
-                        <a href="#solutions" class="block px-6 py-4 text-sm font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-700 border-b border-slate-50">Private Server Nodes</a>
-                        <a href="#solutions" class="block px-6 py-4 text-sm font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-700">Bespoke Enterprise Software</a>
-                    </div>
-                </div>
-
-                <div class="relative h-full group">
-                    <button onclick="toggleDropdown('labs-menu')" class="nav-item h-full px-6 flex items-center gap-2 text-[13px] font-bold text-slate-700 hover:bg-slate-50 transition-all">
-                        Deep Labs <i data-lucide="chevron-down" class="w-4 h-4"></i>
-                    </button>
-                    <div id="labs-menu" class="nav-dropdown absolute top-full left-0 w-72 bg-white shadow-2xl border-t-4 border-blue-600 z-[100] py-2">
-                        <a href="#labs" class="block px-6 py-4 text-sm font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-700 border-b border-slate-50">Active Ops Scan</a>
-                        <a href="#labs" class="block px-6 py-4 text-sm font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-700 border-b border-slate-50">Wasm Edge Research</a>
-                        <a href="#labs" class="block px-6 py-4 text-sm font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-700">100% Surety Protocol</a>
-                    </div>
-                </div>
-
-                <div class="relative h-full group">
-                    <button onclick="toggleDropdown('careers-menu')" class="nav-item h-full px-6 flex items-center gap-2 text-[13px] font-bold text-slate-700 hover:bg-slate-50 transition-all">
-                        Contact & Careers <i data-lucide="chevron-down" class="w-4 h-4"></i>
-                    </button>
-                    <div id="careers-menu" class="nav-dropdown absolute top-full left-0 w-72 bg-white shadow-2xl border-t-4 border-blue-600 z-[100] py-2">
-                        <a href="#contact" class="block px-6 py-4 text-sm font-semibold text-slate-600 hover:bg-blue-50 hover:text-blue-700 border-b border-slate-50">Mumbai / Sangli / UP HQ</a>
-                        <a href="mailto:info@mysock.com?subject=Internship Application" class="block px-6 py-4 text-sm font-semibold text-blue-600 hover:bg-blue-50 border-b border-slate-50">Apply for Internship</a>
-                        <a href="mailto:info@mysock.com?subject=Job Application" class="block px-6 py-4 text-sm font-semibold text-indigo-600 hover:bg-blue-50">Join Elite 10+ Team</a>
-                    </div>
-                </div>
-
-                <a href="#contact" class="ml-6 bg-blue-600 text-white px-8 py-3 rounded-sm text-[10px] font-black tracking-widest uppercase hover:bg-slate-900 transition-all shadow-lg shadow-blue-600/20">Consultation</a>
-            </div>
-
-            <!-- Mobile Menu Toggle -->
-            <button class="lg:hidden p-2 text-slate-900" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-                <i data-lucide="menu" class="w-8 h-8"></i>
-            </button>
         </div>
     </nav>
 
-    <!-- MOBILE MENU OVERLAY -->
-    <div id="mobile-menu" class="hidden fixed inset-0 z-[200] bg-white p-6 flex flex-col gap-8">
-        <button class="self-end p-4" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"><i data-lucide="x" class="w-10 h-10"></i></button>
-        <a href="#home" class="text-4xl font-black uppercase text-slate-900" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a>
-        <a href="#solutions" class="text-4xl font-black uppercase text-slate-900" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Solutions</a>
-        <a href="#labs" class="text-4xl font-black uppercase text-slate-900" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Labs</a>
-        <a href="#contact" class="text-4xl font-black uppercase text-slate-900" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
-    </div>
+    <!-- Hero Section - Immersive -->
+    <header id="hero" class="hero">
+        <div class="container hero-content">
+            <div class="hero-badge reveal-text">
+                <span class="pulse-dot"></span>
+                Trusted by 50+ Businesses Worldwide
+            </div>
+            <h1 class="hero-title">
+                <span class="line"><span class="word reveal-up">Your</span> <span
+                        class="word reveal-up">Vision,</span></span>
+                <span class="line"><span class="word reveal-up gradient-text">Our</span> <span
+                        class="word reveal-up gradient-text">Digital</span> <span
+                        class="word reveal-up gradient-text">Mastery</span></span>
+            </h1>
+            <p class="hero-subtitle reveal-fade">
+                We don't just build websites. We architect complete digital ecosystems that transform businesses. From
+                zero to hero — with strategy, design, and technology that leaves competitors in awe.
+            </p>
+            <div class="hero-cta reveal-fade">
+                <a href="#contact" class="btn btn-primary btn-xl magnetic" data-strength="20">
+                    <span>Start Your Transformation</span>
+                    <i class="ph ph-rocket-launch"></i>
+                </a>
+                <a href="#services" class="btn btn-ghost btn-xl magnetic" data-strength="15">
+                    <span>See What We Build</span>
+                </a>
+            </div>
+            <div class="hero-scroll-indicator">
+                <div class="scroll-line"></div>
+                <span>Scroll to explore</span>
+            </div>
+        </div>
 
-    <!-- HERO SECTION -->
-    <section id="home" class="pt-32 pb-24 bg-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
-            <div class="space-y-10">
-                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-slate-900 text-white text-[10px] font-black tracking-widest uppercase">
-                    <i data-lucide="activity" class="w-4 h-4"></i> Elite Engineering Deployment Unit
+        <!-- Floating 3D Elements -->
+        <div class="hero-3d-elements">
+            <div class="floating-element el-1" data-speed="0.05"></div>
+            <div class="floating-element el-2" data-speed="0.08"></div>
+            <div class="floating-element el-3" data-speed="0.03"></div>
+            <div class="floating-element el-4" data-speed="0.06"></div>
+        </div>
+    </header>
+
+    <!-- Trust Bar - Marquee -->
+    <section class="trust-bar">
+        <div class="trust-label">Trusted By</div>
+        <div class="logo-marquee">
+            <div class="marquee-track">
+                <div class="client-logo">TechStart</div>
+                <div class="client-logo">GrowthX</div>
+                <div class="client-logo">Innovate.io</div>
+                <div class="client-logo">ScaleUp</div>
+                <div class="client-logo">DigitalPro</div>
+                <div class="client-logo">CloudNine</div>
+                <div class="client-logo">TechStart</div>
+                <div class="client-logo">GrowthX</div>
+                <div class="client-logo">Innovate.io</div>
+                <div class="client-logo">ScaleUp</div>
+                <div class="client-logo">DigitalPro</div>
+                <div class="client-logo">CloudNine</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-suffix">+</div>
+                    <div class="stat-label">Projects Delivered</div>
                 </div>
-                <h1 class="text-7xl lg:text-9xl font-black text-slate-900 leading-[0.85] tracking-tighter">
-                    Deep Build. <br>
-                    <span class="text-blue-600">True Surety.</span>
-                </h1>
-                <p class="text-xl text-slate-500 max-w-xl leading-relaxed font-medium">
-                    A high-effort team of 10+ elite software masters. We build corporate-grade AI infrastructure with 100% project delivery surety and affordable global scaling.
-                </p>
-                <div class="flex flex-wrap gap-6 pt-4">
-                    <a href="#solutions" class="px-12 py-5 bg-blue-600 text-white font-black rounded-sm hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/30 uppercase text-xs tracking-widest">Explore Solutions</a>
-                    <a href="#contact" class="px-12 py-5 border-2 border-slate-900 text-slate-900 font-black rounded-sm hover:bg-slate-900 hover:text-white transition-all uppercase text-xs tracking-widest">Join the Team</a>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="100">0</div>
+                    <div class="stat-suffix">%</div>
+                    <div class="stat-label">Client Satisfaction</div>
                 </div>
-                <div class="flex gap-10 pt-10 border-t border-slate-100">
-                    <div><div class="text-3xl font-black text-slate-900">10+</div><div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Engineers</div></div>
-                    <div><div class="text-3xl font-black text-slate-900">100%</div><div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Surety</div></div>
-                    <div><div class="text-3xl font-black text-slate-900">24/7</div><div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Ops Support</div></div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="5">0</div>
+                    <div class="stat-suffix">+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="24">0</div>
+                    <div class="stat-suffix">/7</div>
+                    <div class="stat-label">Support Available</div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="relative hidden lg:block">
-                <div class="bg-white p-12 rounded-xl shadow-2xl border border-slate-100 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-[100px] transition-all group-hover:bg-blue-100"></div>
-                    <div class="flex items-center gap-4 mb-10">
-                        <div class="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center text-white"><i data-lucide="cpu" class="w-6 h-6"></i></div>
-                        <div>
-                            <div class="text-xs font-black uppercase text-slate-900">MySock Engine v4.2</div>
-                            <div class="text-[10px] text-green-500 font-bold tracking-widest">SYSTEM_OPTIMIZED</div>
+    <!-- Services Section - Interactive Cards -->
+    <section id="services" class="section services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag reveal-text">What We Do</span>
+                <h2 class="section-title reveal-split">Complete Digital Arsenal</h2>
+                <p class="section-subtitle reveal-fade">Everything your business needs to dominate the online world.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card tilt-card" data-tilt>
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="card-icon"><i class="ph ph-code"></i></div>
+                        <h3>Website Development</h3>
+                        <p>Custom-crafted, high-performance websites that convert visitors into customers. No templates
+                            — pure bespoke design.</p>
+                        <ul class="card-features">
+                            <li><i class="ph ph-check-circle"></i> Responsive Design</li>
+                            <li><i class="ph ph-check-circle"></i> Speed Optimized</li>
+                            <li><i class="ph ph-check-circle"></i> SEO Ready</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-card tilt-card" data-tilt>
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="card-icon"><i class="ph ph-users-three"></i></div>
+                        <h3>CRM & Automation</h3>
+                        <p>Streamline operations with powerful CRM systems. Automate sales, track leads, and close deals
+                            faster.</p>
+                        <ul class="card-features">
+                            <li><i class="ph ph-check-circle"></i> Custom Pipelines</li>
+                            <li><i class="ph ph-check-circle"></i> Email Automation</li>
+                            <li><i class="ph ph-check-circle"></i> Analytics Dashboard</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-card tilt-card" data-tilt>
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="card-icon"><i class="ph ph-chart-line-up"></i></div>
+                        <h3>Digital Marketing</h3>
+                        <p>Data-driven campaigns that deliver real ROI. From SEO to paid ads, we get you in front of the
+                            right audience.</p>
+                        <ul class="card-features">
+                            <li><i class="ph ph-check-circle"></i> SEO & Content</li>
+                            <li><i class="ph ph-check-circle"></i> Social Media</li>
+                            <li><i class="ph ph-check-circle"></i> PPC Campaigns</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-card tilt-card" data-tilt>
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="card-icon"><i class="ph ph-compass"></i></div>
+                        <h3>Business Consulting</h3>
+                        <p>Don't know where to start? We map out your entire digital strategy from scratch — tools,
+                            platforms, everything.</p>
+                        <ul class="card-features">
+                            <li><i class="ph ph-check-circle"></i> Digital Roadmap</li>
+                            <li><i class="ph ph-check-circle"></i> Tech Stack Advice</li>
+                            <li><i class="ph ph-check-circle"></i> Growth Strategy</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-card tilt-card" data-tilt>
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="card-icon"><i class="ph ph-storefront"></i></div>
+                        <h3>E-Commerce Solutions</h3>
+                        <p>Launch your online store with inventory management, payment gateways, and seamless checkout
+                            experiences.</p>
+                        <ul class="card-features">
+                            <li><i class="ph ph-check-circle"></i> Product Catalog</li>
+                            <li><i class="ph ph-check-circle"></i> Secure Payments</li>
+                            <li><i class="ph ph-check-circle"></i> Order Tracking</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-card tilt-card" data-tilt>
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="card-icon"><i class="ph ph-shield-check"></i></div>
+                        <h3>Maintenance & Security</h3>
+                        <p>Sleep peacefully knowing your digital assets are protected, updated, and always running at
+                            peak performance.</p>
+                        <ul class="card-features">
+                            <li><i class="ph ph-check-circle"></i> Security Audits</li>
+                            <li><i class="ph ph-check-circle"></i> Regular Updates</li>
+                            <li><i class="ph ph-check-circle"></i> 24/7 Monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us section">
+        <div class="container">
+            <div class="why-us-grid">
+                <div class="why-us-text">
+                    <span class="section-tag reveal-text">Why MySock</span>
+                    <h2 class="section-title reveal-split">We're Not Just <br><span class="gradient-text">Another
+                            Agency</span></h2>
+                    <p class="reveal-fade">While others focus on quick fixes, we build lasting digital empires. Our
+                        approach combines psychology-driven design with cutting-edge technology.</p>
+                </div>
+                <div class="why-us-features">
+                    <div class="feature-item reveal-slide">
+                        <div class="feature-icon"><i class="ph ph-lightning"></i></div>
+                        <div class="feature-content">
+                            <h4>From Zero to Launch</h4>
+                            <p>Complete hand-holding from day one. No tech knowledge needed.</p>
                         </div>
                     </div>
-                    <div class="space-y-6">
-                        <div class="p-6 bg-slate-50 border border-slate-100 rounded-lg flex justify-between items-center">
-                            <div class="flex items-center gap-4">
-                                <i data-lucide="map-pin" class="text-blue-600 w-5 h-5"></i>
-                                <div><div class="text-[11px] font-black uppercase">Sangli Strategic HQ</div><div class="text-[9px] text-slate-400">Core Build Active</div></div>
-                            </div>
-                            <i data-lucide="activity" class="text-green-500 w-4 h-4"></i>
+                    <div class="feature-item reveal-slide">
+                        <div class="feature-icon"><i class="ph ph-package"></i></div>
+                        <div class="feature-content">
+                            <h4>All-In-One Solution</h4>
+                            <p>Website, CRM, Marketing — all under one roof. No juggling vendors.</p>
                         </div>
-                        <div class="p-6 bg-slate-50 border border-slate-100 rounded-lg flex justify-between items-center">
-                            <div class="flex items-center gap-4">
-                                <i data-lucide="map-pin" class="text-indigo-600 w-5 h-5"></i>
-                                <div><div class="text-[11px] font-black uppercase">Uttar Pradesh Node</div><div class="text-[9px] text-slate-400">Distribution Hub</div></div>
-                            </div>
-                            <i data-lucide="activity" class="text-green-500 w-4 h-4"></i>
+                    </div>
+                    <div class="feature-item reveal-slide">
+                        <div class="feature-icon"><i class="ph ph-headset"></i></div>
+                        <div class="feature-content">
+                            <h4>Dedicated Partnership</h4>
+                            <p>We're an extension of your team, not just a contractor.</p>
                         </div>
-                        <div class="p-6 bg-slate-950 rounded text-blue-400 font-mono text-[10px] leading-relaxed uppercase tracking-widest">
-                            > ELITE_ENGINEERS: 10+_ACTIVE <br>
-                            > DELIVERY_SURETY: 100%_CERTAIN <br>
-                            > DEEP_WORK_STATUS: SYNCED
+                    </div>
+                    <div class="feature-item reveal-slide">
+                        <div class="feature-icon"><i class="ph ph-currency-circle-dollar"></i></div>
+                        <div class="feature-content">
+                            <h4>Transparent Pricing</h4>
+                            <p>No hidden fees. Know exactly what you pay for.</p>
                         </div>
                     </div>
                 </div>
@@ -161,218 +293,243 @@
         </div>
     </section>
 
-    <!-- SOLUTIONS SECTION -->
-    <section id="solutions" class="py-24 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
-                <h2 class="text-6xl font-black text-slate-900 tracking-tighter">Enterprise Power</h2>
-                <p class="text-slate-500 text-lg">Bespoke software architectures built by our elite 10+ engineering force.</p>
+    <!-- Process Section -->
+    <section id="process" class="section process">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag reveal-text">Our Process</span>
+                <h2 class="section-title reveal-split">How We Build <span class="gradient-text">Success Stories</span>
+                </h2>
             </div>
-            <div class="grid md:grid-cols-3 gap-10">
-                <div class="p-12 bg-white rounded-xl shadow-xl border border-slate-100 hover:-translate-y-2 transition-all">
-                    <div class="w-16 h-16 rounded-xl bg-slate-950 text-white flex items-center justify-center mb-8"><i data-lucide="monitor" class="w-8 h-8"></i></div>
-                    <h3 class="text-2xl font-black text-slate-900 mb-4">Autonomous Agents</h3>
-                    <p class="text-sm text-slate-500 mb-8 leading-relaxed font-medium">Bespoke AI employees that manage marketing and inventory without human input.</p>
-                    <div class="text-[10px] font-black text-blue-600 tracking-widest uppercase">Elite Build Active</div>
+            <div class="process-timeline">
+                <div class="process-line"></div>
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <div class="step-card tilt-card" data-tilt data-tilt-max="5">
+                        <h3>Discovery Call</h3>
+                        <p>We dive deep into your vision, challenges, and goals. This isn't a sales pitch — it's a
+                            strategy session.</p>
+                    </div>
                 </div>
-                <div class="p-12 bg-white rounded-xl shadow-xl border border-slate-100 hover:-translate-y-2 transition-all">
-                    <div class="w-16 h-16 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-8"><i data-lucide="server" class="w-8 h-8"></i></div>
-                    <h3 class="text-2xl font-black text-slate-900 mb-4">Private AI Nodes</h3>
-                    <p class="text-sm text-slate-500 mb-8 leading-relaxed font-medium">Secure server infrastructure for internal corporate chatbots and data hosting.</p>
-                    <div class="text-[10px] font-black text-blue-600 tracking-widest uppercase">Zero-Trust Secured</div>
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <div class="step-card tilt-card" data-tilt data-tilt-max="5">
+                        <h3>Custom Roadmap</h3>
+                        <p>We create a tailored plan covering every tool, platform, and milestone. Your digital
+                            blueprint.</p>
+                    </div>
                 </div>
-                <div class="p-12 bg-white rounded-xl shadow-xl border border-slate-100 hover:-translate-y-2 transition-all">
-                    <div class="w-16 h-16 rounded-xl bg-slate-950 text-white flex items-center justify-center mb-8"><i data-lucide="workflow" class="w-8 h-8"></i></div>
-                    <h3 class="text-2xl font-black text-slate-900 mb-4">Retail Mesh Sync</h3>
-                    <p class="text-sm text-slate-500 mb-8 leading-relaxed font-medium">Enterprise platforms that synchronize thousands of retail nodes in real-time.</p>
-                    <div class="text-[10px] font-black text-blue-600 tracking-widest uppercase">100% Surety Validated</div>
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <div class="step-card tilt-card" data-tilt data-tilt-max="5">
+                        <h3>Design & Build</h3>
+                        <p>Our team crafts your digital presence with obsessive attention to detail. You review at every
+                            stage.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <div class="step-card tilt-card" data-tilt data-tilt-max="5">
+                        <h3>Launch & Scale</h3>
+                        <p>Go live with confidence. We monitor, optimize, and scale as your business grows.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- LABS SECTION -->
-    <section id="labs" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="bg-slate-950 rounded-[3rem] p-16 lg:p-24 text-white relative overflow-hidden shadow-2xl">
-                <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-600/10 blur-[150px] rounded-full"></div>
-                <div class="grid lg:grid-cols-2 gap-20 items-center relative z-10">
-                    <div class="space-y-10">
-                        <h2 class="text-6xl font-black tracking-tighter">Deep Labs.</h2>
-                        <p class="text-xl text-slate-400 font-medium leading-relaxed">Our elite 10+ software squad is currently conducting deep-work builds on next-gen POS sync and military-grade chatbot hosting.</p>
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-4 text-slate-300 font-mono text-sm uppercase tracking-widest"><div class="w-2 h-2 rounded-full bg-blue-500"></div> AI Inventory Orchestration</div>
-                            <div class="flex items-center gap-4 text-slate-300 font-mono text-sm uppercase tracking-widest"><div class="w-2 h-2 rounded-full bg-blue-500"></div> Zero-Latency POS Mesh</div>
-                            <div class="flex items-center gap-4 text-slate-300 font-mono text-sm uppercase tracking-widest"><div class="w-2 h-2 rounded-full bg-blue-500"></div> Vector Search R&D</div>
+    <!-- Testimonials - Parallax Cards -->
+    <section id="testimonials" class="section testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag reveal-text">Client Love</span>
+                <h2 class="section-title reveal-split">What Our <span class="gradient-text">Partners Say</span></h2>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-card parallax-card" data-speed="0.02">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"MySock transformed our entire business. We went from zero online
+                        presence to a fully automated sales machine in 8 weeks. Absolutely mind-blowing!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JS</div>
+                        <div class="author-info">
+                            <strong>James Sterling</strong>
+                            <span>CEO, TechStart Solutions</span>
                         </div>
-                        <button onclick="window.location.href='#contact'" class="px-12 py-5 bg-white text-slate-950 font-black rounded-sm uppercase text-xs tracking-widest hover:bg-blue-600 hover:text-white transition-all">Collaborate with Labs</button>
                     </div>
-                    <div class="p-10 rounded-2xl bg-black/50 border border-white/5 font-mono text-[11px] text-blue-400/80 leading-relaxed uppercase tracking-widest">
-                        $ mysock --deep-scan --all <br>
-                        PROJECTS: 5_ACTIVE_DEPLOY <br>
-                        QUALITY_CERTAINTY: 100% <br>
-                        ENGINEERS: ELITE_10+_MASTER <br>
-                        HUB_SYNC: SANGLI_UP_MUMBAI <br>
-                        SURETY: GUARANTEED
+                </div>
+                <div class="testimonial-card parallax-card" data-speed="0.04">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"The attention to detail is unreal. Our website doesn't just look
+                        premium — it converts like crazy. ROI within the first month!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MK</div>
+                        <div class="author-info">
+                            <strong>Michelle Kim</strong>
+                            <span>Founder, GrowthX Agency</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card parallax-card" data-speed="0.03">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"I had no idea where to start. MySock mapped out everything — from
+                        website to CRM to marketing. Now I just focus on running my business."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RD</div>
+                        <div class="author-info">
+                            <strong>Rahul Desai</strong>
+                            <span>Owner, Innovate Traders</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT SECTION (REPLICATED SUSE ARCHITECTURE) -->
-    <section id="contact" class="py-24 bg-white border-t border-slate-100">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-20">
-            <!-- Sidebar -->
-            <div class="space-y-16">
-                <h2 class="text-7xl font-black text-slate-900 tracking-tighter">Talk to Sales.</h2>
-                <div class="space-y-10">
-                    <div class="flex gap-6 group">
-                        <div class="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center text-white"><i data-lucide="mail"></i></div>
-                        <div><div class="text-xs font-black uppercase text-slate-400 mb-1">Email Inquiries</div><div class="text-lg font-bold">info@mysock.com</div></div>
-                    </div>
-                    <div class="flex gap-6 group">
-                        <div class="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center text-white"><i data-lucide="phone"></i></div>
-                        <div><div class="text-xs font-black uppercase text-slate-400 mb-1">Corporate Hotline</div><div class="text-lg font-bold">+91 9897470837</div></div>
-                    </div>
-                    <div class="flex gap-6 group">
-                        <div class="w-14 h-14 bg-indigo-600 rounded-xl flex items-center justify-center text-white"><i data-lucide="map-pin"></i></div>
-                        <div><div class="text-xs font-black uppercase text-slate-400 mb-1">Global HQ</div><div class="text-lg font-bold">Mumbai / Sangli / UP</div></div>
+    <!-- FAQ Section -->
+    <section class="section faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag reveal-text">Questions?</span>
+                <h2 class="section-title reveal-split">Frequently Asked</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How much does it cost to work with MySock?</span>
+                        <i class="ph ph-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our projects start from $2,500 for basic websites and scale based on complexity. We provide
+                            detailed quotes after our discovery call — no hidden fees, ever.</p>
                     </div>
                 </div>
-                <div class="pt-10 border-t border-slate-100 flex gap-6">
-                    <button onclick="window.location.href='mailto:info@mysock.com?subject=Internship'" class="flex-1 py-4 bg-slate-50 border border-slate-200 rounded text-xs font-bold uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all">Internship</button>
-                    <button onclick="window.location.href='mailto:info@mysock.com?subject=Job'" class="flex-1 py-4 bg-slate-50 border border-slate-200 rounded text-xs font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all">Career/Job</button>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How long does a typical project take?</span>
+                        <i class="ph ph-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Most websites launch in 4-8 weeks. Complete digital transformations (website + CRM +
+                            marketing) typically take 8-12 weeks. We keep you updated at every milestone.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>I'm not tech-savvy. Can you still help me?</span>
+                        <i class="ph ph-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! Many of our clients start with zero technical knowledge. We guide you through
+                            everything and provide training so you can manage your own tools confidently.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you offer support after the project launches?</span>
+                        <i class="ph ph-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! We offer ongoing maintenance and support packages. Plus, every project includes 30 days
+                            of free support post-launch to ensure everything runs smoothly.</p>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- SUSE FORM -->
-            <div class="lg:col-span-2 bg-white border border-slate-200 p-12 lg:p-16 rounded-[2rem] shadow-2xl relative">
-                <div class="absolute top-0 right-12 -translate-y-1/2 px-6 py-2 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest rounded-sm">Enterprise Inquiry</div>
-                <form class="grid md:grid-cols-2 gap-10" onsubmit="event.preventDefault(); alert('Request Submitted Successfully. Our 10+ Elite Squad will reach out shortly.');">
-                    <div class="space-y-3">
-                        <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest">* First Name</label>
-                        <input type="text" required class="w-full border-b-2 border-slate-100 py-3 focus:border-blue-600 outline-none transition-all text-slate-900 font-medium">
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-text">
+                    <span class="section-tag reveal-text">Let's Talk</span>
+                    <h2 class="section-title reveal-split">Ready to <span class="gradient-text">Transform?</span></h2>
+                    <p class="reveal-fade">Book a free 30-minute strategy call. No sales pitch — just genuine advice on
+                        taking your business digital.</p>
+
+                    <div class="urgency-badge">
+                        <i class="ph ph-warning-circle"></i>
+                        <span>Limited slots available this month</span>
                     </div>
-                    <div class="space-y-3">
-                        <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest">* Last Name</label>
-                        <input type="text" required class="w-full border-b-2 border-slate-100 py-3 focus:border-blue-600 outline-none transition-all text-slate-900 font-medium">
+
+                    <div class="contact-info">
+                        <a href="mailto:hello@mysock.com" class="info-item magnetic" data-strength="10">
+                            <i class="ph ph-envelope-simple"></i>
+                            <span>hello@mysock.com</span>
+                        </a>
+                        <a href="tel:+15551234567" class="info-item magnetic" data-strength="10">
+                            <i class="ph ph-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </a>
                     </div>
-                    <div class="space-y-3">
-                        <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest">* Corporate Email</label>
-                        <input type="email" required class="w-full border-b-2 border-slate-100 py-3 focus:border-blue-600 outline-none transition-all text-slate-900 font-medium">
+
+                    <div class="trust-signals">
+                        <div class="trust-item"><i class="ph ph-shield-check"></i> SSL Secured</div>
+                        <div class="trust-item"><i class="ph ph-clock"></i> Response in 24h</div>
                     </div>
-                    <div class="space-y-3">
-                        <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest">* Job Function</label>
-                        <select class="w-full border-b-2 border-slate-100 py-3 outline-none">
-                            <option>Architect / Engineer</option>
-                            <option>CEO / Executive</option>
-                            <option>Director / Manager</option>
-                            <option>Student / Intern</option>
-                        </select>
+                </div>
+
+                <form class="contact-form glass-card" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" required placeholder="John Smith">
                     </div>
-                    <div class="md:col-span-2 space-y-3">
-                        <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest">* Deep Requirements</label>
-                        <textarea required class="w-full border-b-2 border-slate-100 py-3 focus:border-blue-600 outline-none transition-all resize-none" rows="4"></textarea>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required placeholder="john@company.com">
                     </div>
-                    <div class="md:col-span-2 flex items-start gap-4 p-6 bg-slate-50 rounded-xl">
-                        <input type="checkbox" required class="mt-1">
-                        <p class="text-[11px] text-slate-500 font-medium leading-relaxed uppercase tracking-tight">I hereby confirm that I have read the **MySock Privacy Policy**. I consent to the elite 10+ engineering squad processing my data for 100% Surety collaboration.</p>
+                    <div class="form-group">
+                        <label for="company">Company (Optional)</label>
+                        <input type="text" id="company" placeholder="Your Company Name">
                     </div>
-                    <div class="md:col-span-2">
-                        <button type="submit" class="px-14 py-5 bg-blue-600 text-white font-black rounded hover:bg-slate-950 transition-all shadow-xl uppercase text-xs tracking-[0.2em] w-full md:w-auto">Request a Briefing</button>
+                    <div class="form-group">
+                        <label for="message">Tell Us About Your Project</label>
+                        <textarea id="message" rows="4" required
+                            placeholder="What are your goals? Where are you stuck?"></textarea>
                     </div>
+                    <button type="submit" class="btn btn-primary btn-block magnetic" data-strength="15">
+                        <span>Get Your Free Strategy Call</span>
+                        <i class="ph ph-arrow-right"></i>
+                    </button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-black pt-32 pb-16">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-16 mb-24">
-            <div class="space-y-8">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-blue-600 rounded-sm flex items-center justify-center text-white font-black">M</div>
-                    <span class="text-2xl font-black text-white tracking-tighter uppercase">MySock</span>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">MySock<span>.</span></div>
+                    <p>Transforming businesses through digital excellence since 2019.</p>
                 </div>
-                <p class="text-slate-500 text-sm font-medium leading-relaxed">Elite squad of 10+ engineers focused on high-effort corporate builds. Delivering 100% project surety with affordable global scaling.</p>
-            </div>
-            <div>
-                <h4 class="text-white font-black text-xs uppercase mb-8 tracking-widest pb-2 border-b-2 border-slate-800 inline-block">Global Hubs</h4>
-                <ul class="space-y-6 text-sm text-slate-600 font-medium uppercase tracking-tight">
-                    <li><span class="text-blue-500 font-bold block mb-1">Sangli HQ</span>Maharashtra, IN</li>
-                    <li><span class="text-indigo-500 font-bold block mb-1">UP Hub</span>Uttar Pradesh Node, IN</li>
-                    <li><span class="text-cyan-500 font-bold block mb-1">Mumbai Wing</span>BKC Executive, IN</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-black text-xs uppercase mb-8 tracking-widest pb-2 border-b-2 border-slate-800 inline-block">Deep Connect</h4>
-                <ul class="space-y-4 text-sm text-slate-600 font-medium uppercase tracking-tight">
-                    <li>info@mysock.com</li>
-                    <li>+91 9897470837</li>
-                    <li>Jobs & Internships</li>
-                    <li>Partners Network</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-black text-xs uppercase mb-8 tracking-widest pb-2 border-b-2 border-slate-800 inline-block">Security</h4>
-                <div class="p-6 bg-white/5 border border-white/5 rounded-xl space-y-4">
-                    <div class="text-[10px] font-black text-blue-400 uppercase tracking-widest">SLA Framework</div>
-                    <div class="text-[9px] text-slate-500 font-mono leading-relaxed">MYSOCK_ENCRYPTION_ACTIVE <br> STATUS: 100%_SURETY</div>
+                <div class="footer-links-group">
+                    <h4>Services</h4>
+                    <a href="#services">Web Development</a>
+                    <a href="#services">CRM Integration</a>
+                    <a href="#services">Digital Marketing</a>
+                    <a href="#services">Business Consulting</a>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Company</h4>
+                    <a href="#process">Our Process</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <a href="#contact">Contact Us</a>
                 </div>
             </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p class="text-[10px] text-slate-700 font-black uppercase tracking-[0.4em]">© 2026 MYSOCK LABS GLOBAL. ALL RIGHTS RESERVED.</p>
-            <div class="flex gap-10 text-[10px] text-slate-700 font-black uppercase tracking-[0.2em]">
-                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" class="hover:text-white transition-colors">SLA Governance</a>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 MySock Business Solutions. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
-
-        // Dropdown Logic (IIT Jodhpur Style)
-        function toggleDropdown(id) {
-            // Close all first
-            const allDropdowns = document.querySelectorAll('.nav-dropdown');
-            const allNavItems = document.querySelectorAll('.nav-item');
-            
-            allDropdowns.forEach(d => {
-                if (d.id !== id) d.classList.remove('active');
-            });
-
-            const element = document.getElementById(id);
-            const trigger = element.previousElementSibling;
-
-            element.classList.toggle('active');
-            trigger.classList.toggle('active-orange');
-            
-            // Close when clicking outside
-            window.addEventListener('click', function(e) {
-                if (!trigger.contains(e.target) && !element.contains(e.target)) {
-                    element.classList.remove('active');
-                    trigger.classList.remove('active-orange');
-                }
-            }, { once: true });
-        }
-
-        // Deep Work: Smooth Nav Highlight
-        window.addEventListener('scroll', () => {
-            const sections = ['home', 'solutions', 'labs', 'contact'];
-            const navItems = document.querySelectorAll('.nav-item');
-            
-            let current = '';
-            sections.forEach(s => {
-                const element = document.getElementById(s);
-                if (window.scrollY >= (element.offsetTop - 100)) {
-                    current = s;
-                }
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
