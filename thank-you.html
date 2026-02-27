@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Thank you for contacting MySock Business Solutions. We'll be in touch within 24 hours.">
+    <title>Thank You! | MySock Business Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pages.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        .thankyou-center {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 2rem 80px;
+        }
+
+        .thankyou-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-4), var(--accent-1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 3rem;
+            animation: popIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            box-shadow: 0 0 60px rgba(16, 185, 129, 0.4);
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .thankyou-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .thankyou-sub {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .thankyou-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .countdown-text {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <div class="animated-bg">
+        <div class="morph-blob morph-1"></div>
+        <div class="morph-blob morph-2"></div>
+        <div class="morph-blob morph-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo magnetic" data-strength="20">MySock<span class="dot">.</span></a>
+            <ul class="nav-links">
+                <li><a href="services.html" class="nav-link magnetic" data-strength="10">Services</a></li>
+                <li><a href="process.html" class="nav-link magnetic" data-strength="10">Process</a></li>
+                <li><a href="testimonials.html" class="nav-link magnetic" data-strength="10">Clients</a></li>
+                <li><a href="contact.html" class="btn btn-primary magnetic" data-strength="15">Get Started <i
+                            class="ph ph-arrow-right"></i></a></li>
+            </ul>
+            <div class="mobile-toggle magnetic" data-strength="10"><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="thankyou-center">
+        <div>
+            <div class="thankyou-icon"><i class="ph ph-check-fat"></i></div>
+            <h1 class="thankyou-title">Message <span class="gradient-text">Received!</span></h1>
+            <p class="thankyou-sub">Thanks for reaching out to MySock Business Solutions. Our team will review your
+                message and get back to you within <strong>24 hours</strong>.</p>
+            <div class="thankyou-actions">
+                <a href="index.html" class="btn btn-primary magnetic" data-strength="15">Back to Home <i
+                        class="ph ph-house"></i></a>
+                <a href="services.html" class="btn btn-ghost magnetic" data-strength="10">Explore Services</a>
+            </div>
+            <p class="countdown-text" id="redirect-msg">Returning to home page in <span id="countdown">10</span>
+                seconds…</p>
+        </div>
+    </div>
+
+    <script src="nav.js"></script>
+    <script>
+        // Confetti
+        const colors = ['#7c3aed', '#ec4899', '#06b6d4', '#10b981', '#fbbf24'];
+        for (let i = 0; i < 60; i++) {
+            const c = document.createElement('div');
+            c.style.cssText = `position:fixed;width:${Math.random() * 10 + 4}px;height:${Math.random() * 10 + 4}px;background:${colors[Math.floor(Math.random() * colors.length)]};left:${Math.random() * 100}%;top:-20px;border-radius:${Math.random() > .5 ? '50%' : '0'};pointer-events:none;z-index:10000;animation:fall ${Math.random() * 3 + 2}s linear ${Math.random() * 2}s forwards;`;
+            document.body.appendChild(c);
+            setTimeout(() => c.remove(), 6000);
+        }
+        const style = document.createElement('style');
+        style.textContent = `@keyframes fall { to { transform:translateY(105vh) rotate(720deg); opacity:0; } }`;
+        document.head.appendChild(style);
+
+        // Countdown redirect
+        let remaining = 10;
+        const countEl = document.getElementById('countdown');
+        const timer = setInterval(() => {
+            remaining--;
+            if (countEl) countEl.textContent = remaining;
+            if (remaining <= 0) { clearInterval(timer); window.location.href = 'index.html'; }
+        }, 1000);
+    </script>
+</body>
+
+</html>
