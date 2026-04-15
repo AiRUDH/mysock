@@ -1,0 +1,778 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Dashboard — MySock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <script src="js/users.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/guard.js"></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SIDEBAR
+═══════════════════════════════════════════════════════════ -->
+<aside class="sidebar" id="sidebar">
+
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-mark">M</div>
+    <div class="sidebar-logo-text">
+      <span class="sidebar-logo-name">MySock</span>
+      <span class="sidebar-logo-sub">Client Portal</span>
+    </div>
+    <button class="sidebar-close-btn" id="sidebarClose" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="sidebar-nav-group">
+      <span class="sidebar-nav-label">Main</span>
+      <a href="#" class="sidebar-nav-item active" data-section="overview">
+        <span class="sidebar-nav-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="6" rx="1.5" fill="currentColor" opacity=".9"/><rect x="9" y="1" width="6" height="6" rx="1.5" fill="currentColor" opacity=".5"/><rect x="1" y="9" width="6" height="6" rx="1.5" fill="currentColor" opacity=".5"/><rect x="9" y="9" width="6" height="6" rx="1.5" fill="currentColor" opacity=".5"/></svg>
+        </span>
+        Dashboard
+      </a>
+      <a href="#" class="sidebar-nav-item" data-section="services">
+        <span class="sidebar-nav-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 12l3-4 2.5 2 3-5 3 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        Services
+      </a>
+      <a href="#" class="sidebar-nav-item" data-section="work">
+        <span class="sidebar-nav-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="4" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.5"/></svg>
+        </span>
+        Our Work
+      </a>
+      <a href="#" class="sidebar-nav-item" data-section="projects">
+        <span class="sidebar-nav-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 4h14M1 8h10M1 12h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span>
+        Projects
+        <span class="sidebar-nav-badge">3</span>
+      </a>
+      <a href="#" class="sidebar-nav-item" data-section="notifications">
+        <span class="sidebar-nav-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5A4.5 4.5 0 003.5 6v3L2 11h12l-1.5-2V6A4.5 4.5 0 008 1.5z" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 11v.5a1.5 1.5 0 003 0V11" stroke="currentColor" stroke-width="1.5"/></svg>
+        </span>
+        Notifications
+        <span class="sidebar-nav-badge sidebar-nav-badge--red">4</span>
+      </a>
+    </div>
+
+    <div class="sidebar-nav-group">
+      <span class="sidebar-nav-label">Account</span>
+      <a href="#" class="sidebar-nav-item" data-section="settings">
+        <span class="sidebar-nav-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.05 3.05l1.06 1.06M11.89 11.89l1.06 1.06M3.05 12.95l1.06-1.06M11.89 4.11l1.06-1.06" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+        Settings
+      </a>
+      <a href="index.html" class="sidebar-nav-item">
+        <span class="sidebar-nav-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H3a1 1 0 00-1 1v10a1 1 0 001 1h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 11l4-3-4-3M14 8H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        Main Website
+      </a>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-user" id="sidebarUser">
+      <!-- populated by JS -->
+    </div>
+    <button class="sidebar-logout-btn" id="dashSignOutBtn">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M5.5 2H3a1 1 0 00-1 1v9a1 1 0 001 1h2.5M9.5 10.5l3-3-3-3M12.5 7.5H5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Logout
+    </button>
+  </div>
+
+</aside>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MAIN WRAPPER
+═══════════════════════════════════════════════════════════ -->
+<div class="main-wrapper">
+
+  <!-- ── TOPBAR ── -->
+  <header class="topbar">
+    <button class="topbar-menu-btn" id="topbarMenuBtn" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 4h14M2 9h14M2 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+
+    <div class="topbar-breadcrumb">
+      <span class="topbar-breadcrumb-root">MySock</span>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="topbar-breadcrumb-page" id="topbarPageTitle">Dashboard</span>
+    </div>
+
+    <div class="topbar-actions">
+      <!-- Search -->
+      <button class="topbar-icon-btn" aria-label="Search">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+
+      <!-- Notifications -->
+      <button class="topbar-icon-btn topbar-notif-btn" id="topbarNotifBtn" aria-label="Notifications">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5A4.5 4.5 0 003.5 6v3L2 11h12l-1.5-2V6A4.5 4.5 0 008 1.5z" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 11v.5a1.5 1.5 0 003 0V11" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="topbar-notif-dot"></span>
+      </button>
+
+      <!-- Profile chip -->
+      <div class="topbar-profile" id="topbarProfile">
+        <!-- populated by JS -->
+      </div>
+    </div>
+  </header>
+
+  <!-- ── PAGE CONTENT ── -->
+  <main class="page-content">
+
+    <!-- ════════════════════════════════
+         SECTION: DASHBOARD OVERVIEW
+    ════════════════════════════════ -->
+    <section class="section active" id="section-overview">
+
+      <!-- Welcome Panel -->
+      <div class="welcome-panel">
+        <div class="welcome-panel-left">
+          <div class="welcome-avatar" id="welcomeAvatar">PC</div>
+          <div class="welcome-text">
+            <h1 id="welcomeHeading">Good morning, Project</h1>
+            <p id="welcomeSub">Here is what is happening with your account today.</p>
+          </div>
+        </div>
+        <div class="welcome-panel-right">
+          <div class="welcome-status">
+            <span class="welcome-status-dot"></span>
+            <span>All systems operational</span>
+          </div>
+          <div class="welcome-date" id="welcomeDate"></div>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-card-top">
+            <span class="stat-card-label">Total Clients</span>
+            <span class="stat-card-icon stat-card-icon--blue">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="6" cy="5" r="2.5" stroke="currentColor" stroke-width="1.4"/><path d="M1 13c0-2.76 2.24-5 5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="11.5" cy="5.5" r="2" stroke="currentColor" stroke-width="1.4"/><path d="M10 13c0-2.21 1.79-4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </span>
+          </div>
+          <div class="stat-card-value">340</div>
+          <div class="stat-card-change stat-card-change--up">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            +12% from last month
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-top">
+            <span class="stat-card-label">Revenue Influenced</span>
+            <span class="stat-card-icon stat-card-icon--green">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M5 4h4.5a2.5 2.5 0 010 5H5M5 9h5a2.5 2.5 0 010 5H5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </span>
+          </div>
+          <div class="stat-card-value">$2.4B</div>
+          <div class="stat-card-change stat-card-change--up">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            +8.3% this quarter
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-top">
+            <span class="stat-card-label">Active Projects</span>
+            <span class="stat-card-icon stat-card-icon--purple">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="11" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 3V2a1 1 0 011-1h4a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.4"/><path d="M5 8h6M5 11h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </span>
+          </div>
+          <div class="stat-card-value">3</div>
+          <div class="stat-card-change stat-card-change--up">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            +1 this month
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-top">
+            <span class="stat-card-label">Growth Score</span>
+            <span class="stat-card-icon stat-card-icon--amber">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2l1.5 4.5H14l-3.5 2.5 1.5 4.5L8 11l-4 2.5 1.5-4.5L2 6.5h4.5L8 2z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="stat-card-value">8.4</div>
+          <div class="stat-card-change stat-card-change--up">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            +0.6 vs last period
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-top">
+            <span class="stat-card-label">Retention Rate</span>
+            <span class="stat-card-icon stat-card-icon--blue">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="stat-card-value">98%</div>
+          <div class="stat-card-change stat-card-change--neutral">Year over year</div>
+        </div>
+      </div>
+
+      <!-- Two-column: Project Status Table + Activity Feed -->
+      <div class="overview-grid">
+
+        <!-- Project Status Table -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-header-left">
+              <h3>Project Status</h3>
+              <span class="card-header-count">3 active</span>
+            </div>
+            <button class="card-header-action">View all</button>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Project</th>
+                  <th>Service</th>
+                  <th>Progress</th>
+                  <th>Status</th>
+                  <th>Due</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="table-project-name">
+                      <span class="table-project-dot" style="background:#6366f1"></span>
+                      AI Strategy Phase
+                    </div>
+                  </td>
+                  <td><span class="table-tag">AI & Automation</span></td>
+                  <td>
+                    <div class="table-progress">
+                      <div class="table-progress-bar"><div class="table-progress-fill" style="width:72%;background:#6366f1"></div></div>
+                      <span>72%</span>
+                    </div>
+                  </td>
+                  <td><span class="badge badge--active">Active</span></td>
+                  <td class="table-date">Jun 2026</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="table-project-name">
+                      <span class="table-project-dot" style="background:#10b981"></span>
+                      Growth Engineering
+                    </div>
+                  </td>
+                  <td><span class="table-tag">Growth</span></td>
+                  <td>
+                    <div class="table-progress">
+                      <div class="table-progress-bar"><div class="table-progress-fill" style="width:45%;background:#10b981"></div></div>
+                      <span>45%</span>
+                    </div>
+                  </td>
+                  <td><span class="badge badge--active">Active</span></td>
+                  <td class="table-date">Aug 2026</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="table-project-name">
+                      <span class="table-project-dot" style="background:#f59e0b"></span>
+                      Business Intelligence
+                    </div>
+                  </td>
+                  <td><span class="table-tag">Analytics</span></td>
+                  <td>
+                    <div class="table-progress">
+                      <div class="table-progress-bar"><div class="table-progress-fill" style="width:90%;background:#f59e0b"></div></div>
+                      <span>90%</span>
+                    </div>
+                  </td>
+                  <td><span class="badge badge--review">Review</span></td>
+                  <td class="table-date">Apr 2026</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="table-project-name">
+                      <span class="table-project-dot" style="background:#3b82f6"></span>
+                      Infrastructure Setup
+                    </div>
+                  </td>
+                  <td><span class="table-tag">Infrastructure</span></td>
+                  <td>
+                    <div class="table-progress">
+                      <div class="table-progress-bar"><div class="table-progress-fill" style="width:60%;background:#3b82f6"></div></div>
+                      <span>60%</span>
+                    </div>
+                  </td>
+                  <td><span class="badge badge--paused">Paused</span></td>
+                  <td class="table-date">Sep 2026</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Activity Feed -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-header-left">
+              <h3>Recent Activity</h3>
+            </div>
+            <button class="card-header-action">See all</button>
+          </div>
+          <div class="activity-feed">
+            <div class="activity-item">
+              <div class="activity-icon activity-icon--blue">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 10l3-4 2.5 2 3-5 2.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="activity-body">
+                <p class="activity-text"><strong>AI Strategy Report</strong> delivered to your portal</p>
+                <span class="activity-time">2 hours ago</span>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon activity-icon--green">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="activity-body">
+                <p class="activity-text"><strong>Milestone 4</strong> marked as complete</p>
+                <span class="activity-time">Yesterday at 3:15 PM</span>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon activity-icon--amber">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 4.5v3l1.5 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <div class="activity-body">
+                <p class="activity-text"><strong>Quarterly review</strong> scheduled for Apr 15</p>
+                <span class="activity-time">3 days ago</span>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon activity-icon--purple">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M4 3V2a1 1 0 011-1h4a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.5"/></svg>
+              </div>
+              <div class="activity-body">
+                <p class="activity-text"><strong>Analytics dashboard</strong> updated with new widgets</p>
+                <span class="activity-time">1 week ago</span>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon activity-icon--green">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5A5.5 5.5 0 001.5 7 5.5 5.5 0 007 12.5 5.5 5.5 0 0012.5 7 5.5 5.5 0 007 1.5z" stroke="currentColor" stroke-width="1.5"/><path d="M4.5 7l2 2 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="activity-body">
+                <p class="activity-text"><strong>Business Intelligence</strong> module activated</p>
+                <span class="activity-time">2 weeks ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- SECTION: SERVICES -->
+    <section class="section" id="section-services">
+      <div class="section-header">
+        <div>
+          <h2>Services</h2>
+          <p>All MySock services available in your engagement.</p>
+        </div>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-card-icon service-card-icon--indigo">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="2" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="11" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="11" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <span class="service-card-badge service-card-badge--active">Active</span>
+          </div>
+          <h4>AI Strategy &amp; Implementation</h4>
+          <p>Custom AI systems and intelligent automation that reduce manual effort and accelerate decision-making.</p>
+          <div class="service-card-footer">
+            <div class="service-card-progress">
+              <div class="service-card-progress-bar"><div style="width:72%;background:#6366f1"></div></div>
+              <span>72%</span>
+            </div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-card-icon service-card-icon--green">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 15l4-5 3 2.5 4-7 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="service-card-badge service-card-badge--active">Active</span>
+          </div>
+          <h4>Digital Growth Engineering</h4>
+          <p>Data-backed growth frameworks tailored to your market, customer base, and competitive landscape.</p>
+          <div class="service-card-footer">
+            <div class="service-card-progress">
+              <div class="service-card-progress-bar"><div style="width:45%;background:#10b981"></div></div>
+              <span>45%</span>
+            </div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-card-icon service-card-icon--amber">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 6.5v3.5l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <span class="service-card-badge service-card-badge--review">Review</span>
+          </div>
+          <h4>Scalable Infrastructure</h4>
+          <p>Technology architecture designed to grow with your business â€” from early-stage to enterprise-grade.</p>
+          <div class="service-card-footer">
+            <div class="service-card-progress">
+              <div class="service-card-progress-bar"><div style="width:60%;background:#f59e0b"></div></div>
+              <span>60%</span>
+            </div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-card-icon service-card-icon--blue">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 14l3-5 3 3 3-6 3 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="service-card-badge service-card-badge--active">Active</span>
+          </div>
+          <h4>Business Intelligence</h4>
+          <p>Real-time analytics, predictive modelling, and BI that turns raw data into strategic clarity.</p>
+          <div class="service-card-footer">
+            <div class="service-card-progress">
+              <div class="service-card-progress-bar"><div style="width:90%;background:#3b82f6"></div></div>
+              <span>90%</span>
+            </div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-card-icon service-card-icon--purple">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3l1.8 5.4H17l-4.5 3.3 1.8 5.4L10 14l-4.3 3.1 1.8-5.4L3 8.4h5.2L10 3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="service-card-badge service-card-badge--paused">Paused</span>
+          </div>
+          <h4>Brand &amp; Digital Presence</h4>
+          <p>Premium brand identity, web experiences, and content systems that position you as market leader.</p>
+          <div class="service-card-footer">
+            <div class="service-card-progress">
+              <div class="service-card-progress-bar"><div style="width:20%;background:#8b5cf6"></div></div>
+              <span>20%</span>
+            </div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-top">
+            <div class="service-card-icon service-card-icon--green">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="7" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="14" cy="13" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 7h1a3 3 0 013 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <span class="service-card-badge service-card-badge--paused">Paused</span>
+          </div>
+          <h4>Executive Growth Advisory</h4>
+          <p>Strategic counsel for founders and C-suite leaders navigating hypergrowth and transformation.</p>
+          <div class="service-card-footer">
+            <div class="service-card-progress">
+              <div class="service-card-progress-bar"><div style="width:10%;background:#10b981"></div></div>
+              <span>10%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: OUR WORK -->
+    <section class="section" id="section-work">
+      <div class="section-header">
+        <div>
+          <h2>Our Work</h2>
+          <p>Selected projects and engagements across industries.</p>
+        </div>
+      </div>
+      <div class="work-grid">
+        <div class="work-card">
+          <div class="work-card-img work-card-img--1">
+            <span class="work-card-tag">AI Implementation</span>
+          </div>
+          <div class="work-card-body">
+            <h4>Automated Operations Platform</h4>
+            <p>End-to-end automation for a logistics company, reducing manual processing by 74%.</p>
+            <div class="work-card-meta"><span>Logistics</span><span>2025</span></div>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-card-img work-card-img--2">
+            <span class="work-card-tag">Growth Strategy</span>
+          </div>
+          <div class="work-card-body">
+            <h4>Market Expansion Programme</h4>
+            <p>Data-driven expansion strategy that opened 3 new markets within 18 months.</p>
+            <div class="work-card-meta"><span>Retail</span><span>2025</span></div>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-card-img work-card-img--3">
+            <span class="work-card-tag">Digital Transformation</span>
+          </div>
+          <div class="work-card-body">
+            <h4>Enterprise Platform Rebuild</h4>
+            <p>Full modernisation of a legacy enterprise system serving 50,000+ users.</p>
+            <div class="work-card-meta"><span>Enterprise</span><span>2024</span></div>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-card-img work-card-img--4">
+            <span class="work-card-tag">Business Intelligence</span>
+          </div>
+          <div class="work-card-body">
+            <h4>Real-Time Analytics Dashboard</h4>
+            <p>Custom BI platform delivering live insights across 12 business units.</p>
+            <div class="work-card-meta"><span>Finance</span><span>2024</span></div>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-card-img work-card-img--5">
+            <span class="work-card-tag">AI Strategy</span>
+          </div>
+          <div class="work-card-body">
+            <h4>Predictive Revenue Modelling</h4>
+            <p>AI-powered forecasting system with 91% accuracy across quarterly projections.</p>
+            <div class="work-card-meta"><span>SaaS</span><span>2025</span></div>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-card-img work-card-img--6">
+            <span class="work-card-tag">Infrastructure</span>
+          </div>
+          <div class="work-card-body">
+            <h4>Cloud Migration &amp; Scaling</h4>
+            <p>Seamless migration to cloud infrastructure supporting 10x traffic growth.</p>
+            <div class="work-card-meta"><span>E-commerce</span><span>2025</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: PROJECTS -->
+    <section class="section" id="section-projects">
+      <div class="section-header">
+        <div>
+          <h2>Projects</h2>
+          <p>Detailed status of all active and upcoming project phases.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="table-wrap">
+          <table class="data-table data-table--full">
+            <thead>
+              <tr>
+                <th>Project Name</th>
+                <th>Service Area</th>
+                <th>Owner</th>
+                <th>Progress</th>
+                <th>Status</th>
+                <th>Start</th>
+                <th>Due</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="table-project-name"><span class="table-project-dot" style="background:#6366f1"></span>AI Strategy Phase 1</div></td>
+                <td><span class="table-tag">AI &amp; Automation</span></td>
+                <td><div class="table-owner"><div class="table-owner-avatar">MT</div>MySock Team</div></td>
+                <td><div class="table-progress"><div class="table-progress-bar"><div class="table-progress-fill" style="width:72%;background:#6366f1"></div></div><span>72%</span></div></td>
+                <td><span class="badge badge--active">Active</span></td>
+                <td class="table-date">Jan 2026</td>
+                <td class="table-date">Jun 2026</td>
+              </tr>
+              <tr>
+                <td><div class="table-project-name"><span class="table-project-dot" style="background:#10b981"></span>Growth Engineering Q1</div></td>
+                <td><span class="table-tag">Growth</span></td>
+                <td><div class="table-owner"><div class="table-owner-avatar">MT</div>MySock Team</div></td>
+                <td><div class="table-progress"><div class="table-progress-bar"><div class="table-progress-fill" style="width:45%;background:#10b981"></div></div><span>45%</span></div></td>
+                <td><span class="badge badge--active">Active</span></td>
+                <td class="table-date">Feb 2026</td>
+                <td class="table-date">Aug 2026</td>
+              </tr>
+              <tr>
+                <td><div class="table-project-name"><span class="table-project-dot" style="background:#f59e0b"></span>Business Intelligence Setup</div></td>
+                <td><span class="table-tag">Analytics</span></td>
+                <td><div class="table-owner"><div class="table-owner-avatar">MT</div>MySock Team</div></td>
+                <td><div class="table-progress"><div class="table-progress-bar"><div class="table-progress-fill" style="width:90%;background:#f59e0b"></div></div><span>90%</span></div></td>
+                <td><span class="badge badge--review">Review</span></td>
+                <td class="table-date">Jan 2026</td>
+                <td class="table-date">Apr 2026</td>
+              </tr>
+              <tr>
+                <td><div class="table-project-name"><span class="table-project-dot" style="background:#3b82f6"></span>Infrastructure Migration</div></td>
+                <td><span class="table-tag">Infrastructure</span></td>
+                <td><div class="table-owner"><div class="table-owner-avatar">MT</div>MySock Team</div></td>
+                <td><div class="table-progress"><div class="table-progress-bar"><div class="table-progress-fill" style="width:60%;background:#3b82f6"></div></div><span>60%</span></div></td>
+                <td><span class="badge badge--paused">Paused</span></td>
+                <td class="table-date">Mar 2026</td>
+                <td class="table-date">Sep 2026</td>
+              </tr>
+              <tr>
+                <td><div class="table-project-name"><span class="table-project-dot" style="background:#8b5cf6"></span>Brand Identity Refresh</div></td>
+                <td><span class="table-tag">Brand</span></td>
+                <td><div class="table-owner"><div class="table-owner-avatar">MT</div>MySock Team</div></td>
+                <td><div class="table-progress"><div class="table-progress-bar"><div class="table-progress-fill" style="width:20%;background:#8b5cf6"></div></div><span>20%</span></div></td>
+                <td><span class="badge badge--paused">Paused</span></td>
+                <td class="table-date">Apr 2026</td>
+                <td class="table-date">Oct 2026</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: NOTIFICATIONS -->
+    <section class="section" id="section-notifications">
+      <div class="section-header">
+        <div>
+          <h2>Notifications</h2>
+          <p>Updates, alerts, and messages from your account team.</p>
+        </div>
+        <button class="btn-secondary">Mark all read</button>
+      </div>
+      <div class="notifications-list">
+        <div class="notif-item notif-item--unread">
+          <div class="notif-icon notif-icon--blue">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 12l3-4 2.5 2 3-5 3 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="notif-body">
+            <div class="notif-header">
+              <strong>AI Strategy Report Ready</strong>
+              <span class="notif-time">2 hours ago</span>
+            </div>
+            <p>Your Phase 1 AI Strategy Report has been uploaded to the portal. Please review and provide feedback by April 10th.</p>
+          </div>
+          <span class="notif-dot"></span>
+        </div>
+        <div class="notif-item notif-item--unread">
+          <div class="notif-icon notif-icon--amber">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3.5M8 11h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="notif-body">
+            <div class="notif-header">
+              <strong>Action Required: Quarterly Review</strong>
+              <span class="notif-time">3 days ago</span>
+            </div>
+            <p>Your Q1 2026 quarterly review is scheduled for April 15th. Please confirm your availability and review the agenda document.</p>
+          </div>
+          <span class="notif-dot"></span>
+        </div>
+        <div class="notif-item notif-item--unread">
+          <div class="notif-icon notif-icon--green">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="notif-body">
+            <div class="notif-header">
+              <strong>Milestone 4 Completed</strong>
+              <span class="notif-time">Yesterday</span>
+            </div>
+            <p>Data pipeline architecture has been finalised and approved. The team is moving to the implementation phase next week.</p>
+          </div>
+          <span class="notif-dot"></span>
+        </div>
+        <div class="notif-item">
+          <div class="notif-icon notif-icon--purple">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M2 6l6 4 6-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="notif-body">
+            <div class="notif-header">
+              <strong>New Message from Account Manager</strong>
+              <span class="notif-time">1 week ago</span>
+            </div>
+            <p>Your account manager has sent an update regarding the infrastructure migration timeline. Please check your email for details.</p>
+          </div>
+        </div>
+        <div class="notif-item">
+          <div class="notif-icon notif-icon--blue">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5A4.5 4.5 0 003.5 6v3L2 11h12l-1.5-2V6A4.5 4.5 0 008 1.5z" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 11v.5a1.5 1.5 0 003 0V11" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <div class="notif-body">
+            <div class="notif-header">
+              <strong>Dashboard Updated</strong>
+              <span class="notif-time">1 week ago</span>
+            </div>
+            <p>Your analytics dashboard has been updated with 3 new KPI widgets and an improved revenue attribution model.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: SETTINGS -->
+    <section class="section" id="section-settings">
+      <div class="section-header">
+        <div>
+          <h2>Settings</h2>
+          <p>Manage your account preferences and session information.</p>
+        </div>
+      </div>
+      <div class="settings-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-header-left"><h3>Account Information</h3></div>
+          </div>
+          <div class="settings-rows">
+            <div class="settings-row"><span class="settings-label">Full Name</span><span class="settings-value" id="settingName">â€”</span></div>
+            <div class="settings-row"><span class="settings-label">Email Address</span><span class="settings-value" id="settingEmail">â€”</span></div>
+            <div class="settings-row"><span class="settings-label">User ID</span><span class="settings-value settings-value--mono" id="settingId">â€”</span></div>
+            <div class="settings-row"><span class="settings-label">Role</span><span class="settings-value" id="settingRole">â€”</span></div>
+            <div class="settings-row"><span class="settings-label">Login Method</span><span class="settings-value" id="settingMethod">â€”</span></div>
+            <div class="settings-row"><span class="settings-label">Session Status</span><span class="settings-value"><span class="badge badge--active">Active</span></span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-header-left"><h3>Security</h3></div>
+          </div>
+          <div class="settings-security">
+            <div class="settings-security-item">
+              <div class="settings-security-icon">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1.5L3 4.5v5c0 3.75 2.7 7.26 6 8.25 3.3-.99 6-4.5 6-8.25v-5L9 1.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <strong>Demo Authentication</strong>
+                <p>This account uses demo authentication. No real credentials are stored or transmitted.</p>
+              </div>
+            </div>
+            <div class="settings-security-item">
+              <div class="settings-security-icon">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="4" y="9" width="10" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 9V6.5a2.5 2.5 0 015 0V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <strong>Session Storage</strong>
+                <p>Session data is stored in localStorage and cleared on logout. No server-side session exists.</p>
+              </div>
+            </div>
+          </div>
+          <button class="btn-danger" id="settingsLogoutBtn" style="margin-top:20px;">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M5.5 2H3a1 1 0 00-1 1v9a1 1 0 001 1h2.5M9.5 10.5l3-3-3-3M12.5 7.5H5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Sign Out &amp; Clear Session
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
