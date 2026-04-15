@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Services — MySock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/services.css" />
+  <!-- Auth guard — must run before page renders -->
+  <script src="js/users.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/guard.js"></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     HEADER
+═══════════════════════════════════════════════════════ -->
+<header class="sv-header">
+  <a href="index.html" class="sv-logo">
+    <div class="sv-logo-mark">M</div>
+    <span class="sv-logo-name">MySock</span>
+  </a>
+
+  <div class="sv-search">
+    <input type="text" id="svSearch" placeholder="Search services…" autocomplete="off" />
+    <button class="sv-search-btn" aria-label="Search">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <circle cx="7.5" cy="7.5" r="5" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M11.5 11.5L16 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="sv-header-nav">
+    <span class="sv-user-name" id="svUserName">Hello</span>
+    <a href="index.html">Home</a>
+    <button id="svSignOut">Sign Out</button>
+  </nav>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════
+     CATEGORY TABS
+═══════════════════════════════════════════════════════ -->
+<div class="sv-tabs" role="tablist">
+  <button class="sv-tab active" data-cat="All" role="tab">All Services</button>
+  <button class="sv-tab" data-cat="Development" role="tab">Development</button>
+  <button class="sv-tab" data-cat="Marketing" role="tab">Marketing</button>
+  <button class="sv-tab" data-cat="Automation" role="tab">Automation</button>
+  <button class="sv-tab" data-cat="E-commerce" role="tab">E-commerce</button>
+  <button class="sv-tab" data-cat="Consulting" role="tab">Consulting</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     LAYOUT
+═══════════════════════════════════════════════════════ -->
+<div class="sv-layout">
+
+  <!-- SIDEBAR FILTERS -->
+  <aside class="sv-sidebar" aria-label="Filters">
+    <h3>Filters</h3>
+    <p style="font-size:0.82rem;color:#888;margin-top:8px;">Advanced filters coming soon. Use the category tabs above to browse services.</p>
+  </aside>
+
+  <!-- MAIN GRID -->
+  <main class="sv-main">
+    <div class="sv-results-bar">
+      <span><b id="svCount">12</b> services found</span>
+      <div class="sv-sort">
+        <select aria-label="Sort by">
+          <option>Sort: Popularity</option>
+          <option>Price: Low to High</option>
+          <option>Highest Rated</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sv-grid" id="svGrid">
+      <!-- Populated by services.js -->
+    </div>
+  </main>
+
+</div>
+
+<script src="js/services.js"></script>
+</body>
+</html>
