@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free browser-based tools — JPG to PDF, PDF Extractor, Image Compressor. No login needed." />
+  <title>Free Business Tools | MySock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/tools.css" />
+  <script src="js/auth.js"></script>
+  <script>
+    // Scroll fix — always start from top, disable browser scroll restoration
+    if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+    document.documentElement.style.visibility = 'hidden';
+    document.addEventListener('DOMContentLoaded', function () {
+      window.scrollTo(0, 0);
+      window.MySockAuth.checkAuth();
+      document.documentElement.style.visibility = '';
+    });
+  </script>
+  <!-- jsPDF for JPG to PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- pdf.js for PDF text extraction -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>All tools run in your browser — nothing is uploaded to any server.</span>
+      <div class="topbar-links">
+        <a href="contact.html">Contact</a>
+        <span class="topbar-sep">|</span>
+        <a href="index.html">Home</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">M</div>
+        <div class="logo-text">
+          <span class="logo-name">MySock</span>
+          <span class="logo-tagline">Digital Growth & AI Solutions</span>
+        </div>
+      </a>
+      <nav class="nav" id="mainNav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="tools.html" class="nav-link active">Tools</a></li>
+          <li><a href="vision.html" class="nav-link">Vision & Mission</a></li>
+          <li><a href="work.html" class="nav-link">Our Work</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div id="navUserSlot"></div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="tools-hero">
+      <div class="container">
+        <div class="tools-hero-inner">
+          <div class="tools-hero-text">
+            <h1>Free Business Tools</h1>
+            <p>Simple, fast, and privacy-friendly tools to help you work smarter.</p>
+            <div class="tools-trust-line">
+              <span>No login required</span>
+              <span>No data stored</span>
+              <span>100% browser-based</span>
+            </div>
+          </div>
+          <div class="tools-hero-search">
+            <div class="tools-search-wrap">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 10l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <input type="text" id="toolSearch" placeholder="Search tools..." autocomplete="off" aria-label="Search tools" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORY TABS -->
+    <div class="tools-tabs-bar">
+      <div class="container">
+        <div class="tools-tabs" id="toolsTabs" role="tablist">
+          <button class="tools-tab active" data-cat="all"      role="tab">All Tools</button>
+          <button class="tools-tab"         data-cat="file"    role="tab">File Tools</button>
+          <button class="tools-tab"         data-cat="text"    role="tab">Text Tools</button>
+          <button class="tools-tab"         data-cat="utility" role="tab">Utility Tools</button>
+          <button class="tools-tab"         data-cat="design"  role="tab">Design Tools</button>
+        </div>
+      </div>
+    </div>
+    <!-- TOOLS GRID -->
+    <section class="tools-grid-section">
+      <div class="container">
+        <div class="tools-grid" id="toolsGrid">
+
+          <div class="tool-card" data-cat="file" data-name="jpg to pdf convert images">
+            <div class="tool-card-top">
+              <div class="tool-card-icon tool-card-icon--blue">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="1" width="11" height="15" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M13 1l5 5v13a1.5 1.5 0 01-1.5 1.5H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M6 10h6M6 13h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </div>
+              <span class="tool-status-badge tool-status-badge--live">Live</span>
+            </div>
+            <h3 class="tool-card-name">JPG to PDF</h3>
+            <p class="tool-card-desc">Convert multiple images into a single PDF file instantly.</p>
+            <div class="tool-card-tags"><span class="tool-tag">PDF</span><span class="tool-tag">Images</span><span class="tool-tag">Free</span></div>
+          <button class="tool-card-btn" data-tool="jpg-pdf">Open Tool</button>
+          </div>
+
+          <div class="tool-card" data-cat="file" data-name="pdf extractor text extract">
+            <div class="tool-card-top">
+              <div class="tool-card-icon tool-card-icon--indigo">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="1" width="11" height="15" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M13 1l5 5v13a1.5 1.5 0 01-1.5 1.5H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="9" r="2" stroke="currentColor" stroke-width="1.3"/><path d="M10 11l2 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </div>
+              <span class="tool-status-badge tool-status-badge--live">Live</span>
+            </div>
+            <h3 class="tool-card-name">PDF Extractor</h3>
+            <p class="tool-card-desc">Extract all readable text from any PDF document.</p>
+            <div class="tool-card-tags"><span class="tool-tag">PDF</span><span class="tool-tag">Text</span><span class="tool-tag">Free</span></div>
+          <button class="tool-card-btn" data-tool="pdf-extract">Open Tool</button>
+          </div>
+
+          <div class="tool-card" data-cat="design" data-name="image compressor compress reduce size">
+            <div class="tool-card-top">
+              <div class="tool-card-icon tool-card-icon--teal">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="1" y="1" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="tool-status-badge tool-status-badge--live">Live</span>
+            </div>
+            <h3 class="tool-card-name">Image Compressor</h3>
+            <p class="tool-card-desc">Reduce image file size without losing visible quality.</p>
+            <div class="tool-card-tags"><span class="tool-tag">Images</span><span class="tool-tag">JPEG</span><span class="tool-tag">Free</span></div>
+          <button class="tool-card-btn" data-tool="compress">Open Tool</button>
+          </div>
+
+          <div class="tool-card" data-cat="text" data-name="word counter text count characters">
+            <div class="tool-card-top">
+              <div class="tool-card-icon tool-card-icon--amber">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 9h10M3 13h12M3 17h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <span class="tool-status-badge tool-status-badge--live">Live</span>
+            </div>
+            <h3 class="tool-card-name">Word Counter</h3>
+            <p class="tool-card-desc">Count words, characters, and sentences in any text.</p>
+            <div class="tool-card-tags"><span class="tool-tag">Text</span><span class="tool-tag">Free</span></div>
+          <button class="tool-card-btn" data-tool="word-counter">Open Tool</button>
+          </div>
+
+          <div class="tool-card" data-cat="utility" data-name="url cleaner clean link tracking">
+            <div class="tool-card-top">
+              <div class="tool-card-icon tool-card-icon--green">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 12a4 4 0 006.24.44l2.5-2.5a4 4 0 00-5.66-5.66l-1.43 1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 8a4 4 0 00-6.24-.44l-2.5 2.5a4 4 0 005.66 5.66l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="tool-status-badge tool-status-badge--live">Live</span>
+            </div>
+            <h3 class="tool-card-name">URL Cleaner</h3>
+            <p class="tool-card-desc">Strip tracking parameters from any URL instantly.</p>
+            <div class="tool-card-tags"><span class="tool-tag">URL</span><span class="tool-tag">Utility</span><span class="tool-tag">Free</span></div>
+          <button class="tool-card-btn" data-tool="url-cleaner">Open Tool</button>
+          </div>
+
+          <div class="tool-card tool-card--soon" data-cat="file" data-name="pdf merge combine">
+            <div class="tool-card-top">
+              <div class="tool-card-icon tool-card-icon--gray">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 10h14M10 3l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="tool-status-badge tool-status-badge--soon">Coming Soon</span>
+            </div>
+            <h3 class="tool-card-name">PDF Merge</h3>
+            <p class="tool-card-desc">Combine multiple PDF files into one document.</p>
+            <div class="tool-card-tags"><span class="tool-tag">PDF</span><span class="tool-tag">Merge</span></div>
+            <button class="tool-card-btn tool-card-btn--disabled" disabled>Coming Soon</button>
+          </div>
+
+          <div class="tool-card tool-card--soon" data-cat="file" data-name="pdf split pages">
+            <div class="tool-card-top">
+              <div class="tool-card-icon tool-card-icon--gray">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v14M3 10l7-7 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="tool-status-badge tool-status-badge--soon">Coming Soon</span>
+            </div>
+            <h3 class="tool-card-name">PDF Split</h3>
+            <p class="tool-card-desc">Split a PDF into individual pages or custom ranges.</p>
+            <div class="tool-card-tags"><span class="tool-tag">PDF</span><span class="tool-tag">Split</span></div>
+            <button class="tool-card-btn tool-card-btn--disabled" disabled>Coming Soon</button>
+          </div>
+
+          <div class="tool-card tool-card--soon" data-cat="design" data-name="color picker palette design">
+            <div class="tool-card-top">
+              <div class="tool-card-icon tool-card-icon--gray">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.3"/></svg>
+              </div>
+              <span class="tool-status-badge tool-status-badge--soon">Coming Soon</span>
+            </div>
+            <h3 class="tool-card-name">Color Picker</h3>
+            <p class="tool-card-desc">Pick and convert colors in HEX, RGB, and HSL.</p>
+            <div class="tool-card-tags"><span class="tool-tag">Design</span><span class="tool-tag">Color</span></div>
+            <button class="tool-card-btn tool-card-btn--disabled" disabled>Coming Soon</button>
+          </div>
+
+        </div>
+        <div class="tools-empty" id="toolsEmpty" hidden>
+          <p>No tools match your search.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER CTA -->
+    <section class="tools-cta-section">
+      <div class="container">
+        <div class="tools-cta-inner">
+          <div>
+            <h2>Need a custom solution?</h2>
+            <p>We build automation tools, web apps, and AI systems for businesses.</p>
+          </div>
+          <a href="https://forms.gle/dLJEYVGHfj5khg3o7" target="_blank" rel="noopener" class="tools-cta-btn">Talk to Us</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════
+       TOOL MODAL
+  ═══════════════════════════════════════ -->
+  <div class="tool-modal-overlay" id="toolModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="tool-modal">
+
+      <!-- Modal header -->
+      <div class="tool-modal-hd">
+        <div class="tool-modal-hd-left">
+          <div class="tool-modal-icon" id="modalIcon"></div>
+          <div>
+            <h2 class="tool-modal-title" id="modalTitle"></h2>
+            <p class="tool-modal-sub" id="modalSub"></p>
+          </div>
+        </div>
+        <button class="tool-modal-close" id="modalClose" aria-label="Close tool">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 4l10 10M14 4L4 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <!-- Modal body — panels swap in here -->
+      <div class="tool-modal-body">
+
+        <!-- JPG to PDF -->
+        <div class="tool-modal-panel" id="panel-jpg-pdf">
+          <label class="tools-drop-zone" for="jpgInput">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M14 4v16M6 12l8-8 8 8" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 22h20" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/></svg>
+            <span>Click or drag images to upload</span>
+            <small>JPG, PNG, WEBP supported</small>
+            <input type="file" id="jpgInput" accept="image/*" multiple />
+          </label>
+          <div class="tool-thumbs" id="jpgPreview"></div>
+          <div class="tools-action-row">
+            <button class="tools-primary-btn" id="jpgConvertBtn" disabled>Convert to PDF</button>
+            <span class="tools-status" id="jpgStatus">No files selected</span>
+          </div>
+        </div>
+
+        <!-- PDF Extractor -->
+        <div class="tool-modal-panel" id="panel-pdf-extract">
+          <label class="tools-drop-zone" for="pdfInput">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M14 4v16M6 12l8-8 8 8" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 22h20" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/></svg>
+            <span>Click to select a PDF file</span>
+            <small>PDF files only</small>
+            <input type="file" id="pdfInput" accept="application/pdf" />
+          </label>
+          <div class="tools-action-row">
+            <button class="tools-primary-btn" id="pdfExtractBtn" disabled>Extract Text</button>
+            <button class="tools-secondary-btn" id="pdfCopyBtn" style="display:none">Copy Text</button>
+            <span class="tools-status" id="pdfStatus">No file selected</span>
+          </div>
+          <textarea id="pdfOutput" class="tools-textarea" placeholder="Extracted text will appear here..." readonly></textarea>
+        </div>
+
+        <!-- Image Compressor -->
+        <div class="tool-modal-panel" id="panel-compress">
+          <label class="tools-drop-zone" for="compressInput">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M14 4v16M6 12l8-8 8 8" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 22h20" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/></svg>
+            <span>Click to select an image</span>
+            <small>JPG, PNG, WEBP supported</small>
+            <input type="file" id="compressInput" accept="image/*" />
+          </label>
+          <div class="tool-thumbs" id="compressPreview"></div>
+          <div class="tools-quality-row">
+            <label for="compressQuality">Quality: <strong id="qualityValue">75%</strong></label>
+            <input type="range" id="compressQuality" min="10" max="95" value="75" />
+          </div>
+          <div class="tools-action-row">
+            <button class="tools-primary-btn" id="compressBtn" disabled>Compress &amp; Download</button>
+            <span class="tools-status" id="compressStatus">No file selected</span>
+          </div>
+        </div>
+
+        <!-- Word Counter -->
+        <div class="tool-modal-panel" id="panel-word-counter">
+          <textarea id="wordInput" class="tools-textarea" placeholder="Paste or type your text here..." rows="8"></textarea>
+          <div class="tools-word-stats">
+            <div class="tools-stat-chip"><span id="wordCount">0</span><label>Words</label></div>
+            <div class="tools-stat-chip"><span id="charCount">0</span><label>Characters</label></div>
+            <div class="tools-stat-chip"><span id="charNoSpace">0</span><label>No spaces</label></div>
+            <div class="tools-stat-chip"><span id="sentenceCount">0</span><label>Sentences</label></div>
+          </div>
+        </div>
+
+        <!-- URL Cleaner -->
+        <div class="tool-modal-panel" id="panel-url-cleaner">
+          <div class="tools-input-row">
+            <input type="url" id="urlInput" class="tools-text-input" placeholder="Paste a URL here..." />
+            <button class="tools-primary-btn" id="urlCleanBtn">Clean URL</button>
+          </div>
+          <div class="tools-action-row" id="urlResult" hidden>
+            <input type="text" id="urlOutput" class="tools-text-input" readonly />
+            <button class="tools-secondary-btn" id="urlCopyBtn">Copy</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-icon">M</div><div class="logo-text"><span class="logo-name">MySock</span><span class="logo-tagline">Digital Growth & AI Solutions</span></div></a>
+        <p>Helping organisations grow through intelligent systems, strategic clarity, and disciplined execution.</p>
+      </div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="vision.html">Vision & Mission</a></li><li><a href="work.html">Our Work</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html">AI & Automation</a></li><li><a href="services.html">Growth Strategy</a></li><li><a href="tools.html">Free Tools</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:info.mysock@zohomail.in">info.mysock@zohomail.in</a></li><li><a href="https://wa.me/918057470837">+91 8057470837</a></li><li><a href="https://forms.gle/iPxNgyC4pQBmYmrS8" target="_blank">Book a Consultation</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><div class="container footer-bottom-inner"><p>© 2026 MySock. All rights reserved.</p><div class="footer-legal"><a href="#">Privacy Policy</a><a href="terms.html">Terms & Conditions</a></div></div></div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/tools.js"></script>
+</body>
+</html>
