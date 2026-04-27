@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Profile | MySock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <script src="js/users.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/guard.js"></script>
+</head>
+<body class="dash-body">
+
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="dash-sidebar-header">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">M</div>
+        <div class="logo-text">
+          <span class="logo-name">MySock</span>
+          <span class="logo-tagline">Client Portal</span>
+        </div>
+      </a>
+      <button class="dash-sidebar-close" id="sidebarClose" aria-label="Close menu">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 2l14 14M16 2L2 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <nav class="dash-nav">
+      <ul>
+        <li><a href="services.html" class="dash-nav-link"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="2" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="10" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="10" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>Services</a></li>
+        <li><a href="services.html" class="dash-nav-link"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 14l4-5 3 2.5 4-6 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Services</a></li>
+        <li><a href="work.html" class="dash-nav-link"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="11" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M6 4V3a1 1 0 011-1h4a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.5"/></svg>Projects</a></li>
+        <li><a href="profile.html" class="dash-nav-link active"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 15c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Profile</a></li>
+        <li><a href="contact.html" class="dash-nav-link"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2.5 4.5h13a1 1 0 011 1v7a1 1 0 01-1 1h-13a1 1 0 01-1-1v-7a1 1 0 011-1z" stroke="currentColor" stroke-width="1.5"/><path d="M2.5 5.5l6.5 5 6.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Support</a></li>
+      </ul>
+    </nav>
+    <div class="dash-sidebar-footer">
+      <div class="dash-user-card" id="dashUserCard"></div>
+      <button class="dash-signout-btn" id="dashSignOutBtn">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H3a1 1 0 00-1 1v10a1 1 0 001 1h3M10 11l3-3-3-3M13 8H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Sign Out
+      </button>
+    </div>
+  </aside>
+
+  <div class="dash-sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="dash-main">
+    <header class="dash-topbar">
+      <button class="dash-menu-btn" id="dashMenuBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <div class="dash-topbar-title">Profile</div>
+      <div class="dash-topbar-right">
+        <div class="dash-topbar-user" id="dashTopbarUser"></div>
+      </div>
+    </header>
+
+    <div class="dash-content">
+      <div class="dash-welcome">
+        <div class="dash-welcome-text">
+          <h1>Your Profile</h1>
+          <p>Account information sourced from your Google account.</p>
+        </div>
+      </div>
+
+      <div class="profile-layout">
+        <!-- Profile card -->
+        <div class="dash-card profile-card">
+          <div class="profile-avatar-wrap">
+            <img id="profileAvatar" src="" alt="" class="profile-avatar" />
+            <div class="profile-avatar-fallback" id="profileAvatarFallback"></div>
+          </div>
+          <h2 id="profileName" class="profile-name"></h2>
+          <p id="profileEmail" class="profile-email"></p>
+          <span class="profile-badge">Verified Account</span>
+        </div>
+
+        <!-- Account details -->
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <h3>Account Details</h3>
+          </div>
+          <div class="profile-details">
+            <div class="profile-detail-row">
+              <span class="profile-detail-label">Full Name</span>
+              <span class="profile-detail-value" id="detailName">—</span>
+            </div>
+            <div class="profile-detail-row">
+              <span class="profile-detail-label">Email Address</span>
+              <span class="profile-detail-value" id="detailEmail">—</span>
+            </div>
+            <div class="profile-detail-row">
+              <span class="profile-detail-label">Account ID</span>
+              <span class="profile-detail-value profile-detail-value--mono" id="detailId">—</span>
+            </div>
+            <div class="profile-detail-row">
+              <span class="profile-detail-label">Authentication</span>
+              <span class="profile-detail-value">Google Identity Services</span>
+            </div>
+            <div class="profile-detail-row">
+              <span class="profile-detail-label">Session Expires</span>
+              <span class="profile-detail-value" id="detailExpiry">—</span>
+            </div>
+            <div class="profile-detail-row">
+              <span class="profile-detail-label">Account Status</span>
+              <span class="profile-detail-value"><span class="dash-service-status dash-service-status--active">Active</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Security -->
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <h3>Security</h3>
+          </div>
+          <div class="profile-security">
+            <div class="profile-security-item">
+              <div class="profile-security-icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L4 5v5c0 3.55 2.56 6.88 6 7.93C13.44 16.88 16 13.55 16 10V5l-6-3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <strong>Google Sign-In</strong>
+                <p>Your account is secured via Google OAuth 2.0. No password is stored by MySock.</p>
+              </div>
+            </div>
+            <div class="profile-security-item">
+              <div class="profile-security-icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="9" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 9V6a3 3 0 016 0v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <strong>Session Security</strong>
+                <p>Sessions expire after 8 hours of inactivity. Sign out when using shared devices.</p>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-outline" id="profileSignOutBtn" style="margin-top:24px;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H3a1 1 0 00-1 1v10a1 1 0 001 1h3M10 11l3-3-3-3M13 8H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Sign Out of All Sessions
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Profile page — demo mode population
+    document.addEventListener('DOMContentLoaded', function () {
+      var auth = window.MySockAuth;
+      var user = auth.getUser();
+      if (!user) return;
+
+      var initials = (user.name || 'DU').split(' ').map(function (w) { return w[0]; }).join('').slice(0, 2).toUpperCase();
+
+      // Avatar — demo user has no picture, show initials fallback
+      var img      = document.getElementById('profileAvatar');
+      var fallback = document.getElementById('profileAvatarFallback');
+      if (user.picture) {
+        img.src    = user.picture;
+        img.alt    = user.name;
+        img.onerror = function () { img.style.display = 'none'; fallback.style.display = 'flex'; };
+      } else {
+        img.style.display      = 'none';
+        fallback.style.display = 'flex';
+      }
+      fallback.textContent = initials;
+
+      document.getElementById('profileName').textContent  = user.name  || '—';
+      document.getElementById('profileEmail').textContent = user.email || '—';
+      document.getElementById('detailName').textContent   = user.name  || '—';
+      document.getElementById('detailEmail').textContent  = user.email || '—';
+      document.getElementById('detailId').textContent     = user.id    || '—';
+
+      // Demo mode — no real token expiry
+      var expiryEl = document.getElementById('detailExpiry');
+      if (expiryEl) expiryEl.textContent = 'Demo session (no expiry)';
+
+      var signOutBtn = document.getElementById('profileSignOutBtn');
+      if (signOutBtn) {
+        signOutBtn.addEventListener('click', function () {
+          auth.signOut(function () { window.location.replace('login.html'); });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
